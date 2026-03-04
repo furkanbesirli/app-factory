@@ -1,0 +1,60 @@
+FROM eclipse-temurin:17-jdk-jammy
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Android SDK dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl unzip wget git ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Android SDK
+ENV ANDROID_HOME=/opt/android-sdk
+ENV ANDROID_SDK_ROOT=$ANDROID_HOME
+ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+
+RUN mkdir -p $ANDROID_HOME/cmdline-tools \
+    && cd /tmp \
+    && wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip \
+    && unzip -q cmdline-tools.zip \
+    && mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest \
+    && rm cmdline-tools.zip
+
+RUN yes | sdkmanager --licenses > /dev/null 2>&1 || true
+RUN sdkmanager \
+    "platform-tools" \
+    "platforms;android-35" \
+    "build-tools;35.0.0"
+
+# Worker app — layout mirrors dev: /app/builder/worker/
+# so path.resolve(__dirname,'../../../') → /app (project root)
+WORKDIR /app
+
+COPY builder/worker/package.json builder/worker/package-lock.json ./builder/worker/
+COPY builder/shared/ ./builder/shared/
+
+WORKDIR /app/builder/worker
+RUN npm ci
+
+COPY builder/worker/src ./src
+COPY builder/worker/tsconfig.json ./
+RUN npm run build
+
+# Android template at /app/android (resolveFromRoot('./android') → /app/android)
+COPY android/ /app/android/
+
+# Data directories (mounted as Docker volumes)
+RUN mkdir -p /data/artifacts /data/workspaces /data/keys /data/assets
+
+ENV NODE_ENV=production
+ENV ARTIFACTS_ROOT=/data/artifacts
+ENV WORKSPACES_ROOT=/data/workspaces
+ENV KEYS_ROOT=/data/keys
+ENV ASSETS_ROOT=/data/assets
+
+WORKDIR /app/builder/worker
+CMD ["node", "dist/index.js"]

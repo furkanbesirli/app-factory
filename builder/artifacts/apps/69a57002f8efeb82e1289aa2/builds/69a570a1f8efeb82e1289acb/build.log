@@ -1,0 +1,140 @@
+[2026-03-02T11:12:34.561Z] === STEP 1: Preparing workspace ===
+[2026-03-02T11:12:34.561Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android
+[2026-03-02T11:12:34.603Z] Template copied successfully
+[2026-03-02T11:12:34.603Z] === STEP 2: Applying parameters ===
+[2026-03-02T11:12:34.603Z] Setting applicationId = com.test.builder.app
+[2026-03-02T11:12:34.603Z] Setting versionCode = 101, versionName = 1.0.1
+[2026-03-02T11:12:34.604Z] Gradle file updated
+[2026-03-02T11:12:34.605Z] Removed package attribute from AndroidManifest.xml (namespace is in build.gradle)
+[2026-03-02T11:12:34.605Z] Setting app_name EN = Test App
+[2026-03-02T11:12:34.605Z] Setting app_name TR = Test App
+[2026-03-02T11:12:34.605Z] Setting app_name ES = Test App
+[2026-03-02T11:12:34.605Z] === STEP 3: Setting up signing ===
+[2026-03-02T11:12:34.606Z] Keystore configured for signed release build
+[2026-03-02T11:12:34.606Z] === STEP 4: Running Gradle build ===
+[2026-03-02T11:12:34.606Z] Running: gradlew clean
+[2026-03-02T11:12:34.606Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 up-to-date
+[2026-03-02T11:12:38.302Z] Running: gradlew assembleRelease
+[2026-03-02T11:12:38.302Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:buildKotlinToolingMetadata
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseResources
+> Task :app:mergeReleaseShaders
+> Task :app:mergeReleaseArtProfile
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:processReleaseManifestForPackage
+> Task :app:processReleaseResources
+> Task :app:optimizeReleaseResources
+> Task :app:mergeExtDexRelease
+
+> Task :app:compileReleaseKotlin FAILED
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/ExploreActivity.kt:11:24 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/ExploreActivity.kt:17:50 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:49:24 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:53:32 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:54:36 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:873:49 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:875:17 Overload resolution ambiguity: 
+public open fun setView(p0: View!): AlertDialog.Builder! defined in androidx.appcompat.app.AlertDialog.Builder
+public open fun setView(p0: Int): AlertDialog.Builder! defined in androidx.appcompat.app.AlertDialog.Builder
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:883:74 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:68:24 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:81:40 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:82:38 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:83:36 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:84:35 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:87:39 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:88:32 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:89:40 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:90:43 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:91:41 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:92:45 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:93:43 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:94:42 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:97:38 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:98:38 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:99:40 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:100:41 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:101:41 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:140:32 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:489:49 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:491:17 Overload resolution ambiguity: 
+public open fun setView(p0: View!): AlertDialog.Builder! defined in androidx.appcompat.app.AlertDialog.Builder
+public open fun setView(p0: Int): AlertDialog.Builder! defined in androidx.appcompat.app.AlertDialog.Builder
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:499:74 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/SafetyActivity.kt:14:24 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/SafetyActivity.kt:16:35 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/SafetyActivity.kt:20:38 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:11:27 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:63:32 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:82:60 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:83:60 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:84:60 Unresolved reference: R
+e: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/app/src/main/java/chatonlive/com/aab/review/ReviewBottomSheet.kt:133:36 Unresolved reference: R
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a570a1f8efeb82e1289acb/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileReleaseKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 33s
+33 actionable tasks: 33 executed
+[2026-03-02T11:13:11.924Z] === BUILD FAILED: gradlew assembleRelease failed with exit code 1 ===

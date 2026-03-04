@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- Top line (Full width) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M3,6h18v2h-18z"/>
+        
+    <!-- Middle line (75% width, aligned right for asymmetrical look) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M7,11h14v2h-14z"/>
+        
+    <!-- Bottom line (50% width, aligned right) -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M13,16h8v2h-8z"/>
+        
+</vector>

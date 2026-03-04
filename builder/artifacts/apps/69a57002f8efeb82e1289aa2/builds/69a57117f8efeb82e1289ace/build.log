@@ -1,0 +1,111 @@
+[2026-03-02T11:14:32.910Z] === STEP 1: Preparing workspace ===
+[2026-03-02T11:14:32.910Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android
+[2026-03-02T11:14:32.956Z] Template copied successfully
+[2026-03-02T11:14:32.956Z] === STEP 2: Applying parameters ===
+[2026-03-02T11:14:32.956Z] Setting applicationId = com.test.builder.app
+[2026-03-02T11:14:32.957Z] Setting versionCode = 102, versionName = 1.0.2
+[2026-03-02T11:14:32.957Z] Gradle file updated
+[2026-03-02T11:14:32.958Z] Removed package attribute from AndroidManifest.xml (namespace is in build.gradle)
+[2026-03-02T11:14:32.958Z] Setting app_name EN = Test App
+[2026-03-02T11:14:32.958Z] Setting app_name TR = Test App
+[2026-03-02T11:14:32.958Z] Setting app_name ES = Test App
+[2026-03-02T11:14:32.959Z] === STEP 3: Setting up signing ===
+[2026-03-02T11:14:32.961Z] Keystore configured for signed release build
+[2026-03-02T11:14:32.961Z] === STEP 4: Running Gradle build ===
+[2026-03-02T11:14:32.961Z] Running: gradlew clean
+[2026-03-02T11:14:32.961Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 up-to-date
+[2026-03-02T11:14:36.402Z] Running: gradlew assembleRelease
+[2026-03-02T11:14:36.403Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:processReleaseManifestForPackage
+> Task :app:buildKotlinToolingMetadata
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:mergeExtDexRelease
+> Task :app:mergeReleaseResources
+> Task :app:processReleaseResources
+> Task :app:optimizeReleaseResources
+
+> Task :app:compileReleaseKotlin
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android/app/src/main/java/chatonlive/com/aab/HomeActivity.kt:119:21 'setter for databaseEnabled: Boolean' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android/app/src/main/java/chatonlive/com/aab/LoginActivity.kt:203:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android/app/src/main/java/chatonlive/com/aab/services/GoogleSignInService.kt:33:17 Variable 'account' is never used
+
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:dexBuilderRelease
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease FAILED
+> Task :app:lintVitalAnalyzeRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a57117f8efeb82e1289ace/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:packageRelease'.
+> A failure occurred while executing com.android.build.gradle.tasks.PackageAndroidArtifact$IncrementalSplitterRunnable
+   > SigningConfig "release" is missing required property "storeFile".
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 37s
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+42 actionable tasks: 42 executed
+[2026-03-02T11:15:14.013Z] === BUILD FAILED: gradlew assembleRelease failed with exit code 1 ===

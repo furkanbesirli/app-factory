@@ -1,0 +1,188 @@
+[2026-03-04T08:21:13.397Z] === STEP 1: Preparing workspace ===
+[2026-03-04T08:21:13.397Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android
+[2026-03-04T08:21:13.453Z] Template copied successfully
+[2026-03-04T08:21:13.453Z] === REPACKAGE: chatonlive.com.aab → com.sena.mobile ===
+[2026-03-04T08:21:13.461Z]   Replaced "chatonlive.com.aab" in 14 files
+[2026-03-04T08:21:13.466Z]   Moved source: chatonlive/com/aab/ → com/sena/mobile/
+[2026-03-04T08:21:13.466Z]   Updated namespace in build.gradle → com.sena.mobile
+[2026-03-04T08:21:13.466Z] === REPACKAGE: Complete ===
+[2026-03-04T08:21:13.466Z] === STEP 2: Applying parameters ===
+[2026-03-04T08:21:13.466Z] Setting applicationId = com.sena.mobile
+[2026-03-04T08:21:13.466Z] Setting versionCode = 101, versionName = 1.0.1
+[2026-03-04T08:21:13.467Z] Gradle file updated
+[2026-03-04T08:21:13.467Z] Updated AndroidManifest.xml package → com.sena.mobile
+[2026-03-04T08:21:13.467Z] Setting app_name EN = SENA
+[2026-03-04T08:21:13.467Z] Setting app_name TR = SENA
+[2026-03-04T08:21:13.467Z] Setting app_name ES = SENA
+[2026-03-04T08:21:13.468Z] === STEP 2b: Applying branding ===
+[2026-03-04T08:21:13.468Z] Login label set to: SENA
+[2026-03-04T08:21:13.468Z] Login subtitle set to: senos
+[2026-03-04T08:21:13.469Z] brand_background_start = #4C1D95
+[2026-03-04T08:21:13.469Z] brand_background_end = #1E1B4B
+[2026-03-04T08:21:13.469Z] brand_primary = #7C3AED
+[2026-03-04T08:21:13.469Z] === STEP 3: Setting up signing ===
+[2026-03-04T08:21:13.469Z] Keystore configured for signed release build
+[2026-03-04T08:21:13.469Z] === STEP 4: Running Gradle build ===
+[2026-03-04T08:21:13.469Z] Running: gradlew clean
+[2026-03-04T08:21:13.469Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 up-to-date
+[2026-03-04T08:21:15.407Z] Running: gradlew assembleRelease
+[2026-03-04T08:21:15.407Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+
+> Task :app:processReleaseMainManifest
+package="com.sena.mobile" found in source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/app/src/main/AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.sena.mobile" from the source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/app/src/main/AndroidManifest.xml.
+
+> Task :app:processReleaseManifest
+> Task :app:buildKotlinToolingMetadata
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:processReleaseManifestForPackage
+> Task :app:mergeReleaseResources
+> Task :app:mergeExtDexRelease
+> Task :app:processReleaseResources
+> Task :app:optimizeReleaseResources
+
+> Task :app:compileReleaseKotlin
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/app/src/main/java/com/sena/mobile/HomeActivity.kt:119:21 'setter for databaseEnabled: Boolean' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/app/src/main/java/com/sena/mobile/LoginActivity.kt:203:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/app/src/main/java/com/sena/mobile/services/GoogleSignInService.kt:33:17 Variable 'account' is never used
+
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:dexBuilderRelease
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 30s
+46 actionable tasks: 46 executed
+[2026-03-04T08:21:46.600Z] Running: gradlew bundleRelease
+[2026-03-04T08:21:46.601Z] > ./gradlew bundleRelease
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues UP-TO-DATE
+> Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseResources UP-TO-DATE
+> Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksRelease UP-TO-DATE
+> Task :app:processReleaseMainManifest UP-TO-DATE
+> Task :app:processReleaseManifest UP-TO-DATE
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:checkReleaseAarMetadata UP-TO-DATE
+> Task :app:packageReleaseResources UP-TO-DATE
+> Task :app:parseReleaseLocalResources UP-TO-DATE
+> Task :app:processReleaseManifestForPackage UP-TO-DATE
+> Task :app:processReleaseResources UP-TO-DATE
+> Task :app:extractReleaseVersionControlInfo UP-TO-DATE
+> Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:compileReleaseKotlin UP-TO-DATE
+> Task :app:javaPreCompileRelease UP-TO-DATE
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:dexBuilderRelease UP-TO-DATE
+> Task :app:desugarReleaseFileDependencies UP-TO-DATE
+> Task :app:mergeReleaseStartupProfile UP-TO-DATE
+> Task :app:mergeExtDexRelease UP-TO-DATE
+> Task :app:mergeDexRelease UP-TO-DATE
+> Task :app:mergeReleaseShaders UP-TO-DATE
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseGlobalSynthetics UP-TO-DATE
+> Task :app:processReleaseJavaRes UP-TO-DATE
+> Task :app:mergeReleaseJavaResource UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:writeReleaseAppMetadata UP-TO-DATE
+> Task :app:mergeReleaseArtProfile UP-TO-DATE
+> Task :app:compileReleaseArtProfile UP-TO-DATE
+> Task :app:collectReleaseDependencies UP-TO-DATE
+> Task :app:configureReleaseDependencies
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:validateSigningRelease UP-TO-DATE
+> Task :app:bundleReleaseResources
+> Task :app:buildReleasePreBundle
+> Task :app:packageReleaseBundle
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69a7eb4975956d5101aa9c63/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+44 actionable tasks: 10 executed, 34 up-to-date
+[2026-03-04T08:21:49.794Z] === STEP 5: Collecting artifacts ===
+[2026-03-04T08:21:49.819Z] APK collected: apps/com.sena.mobile/builds/69a7eb4975956d5101aa9c63/com.sena.mobile(v1.0.1).apk
+[2026-03-04T08:21:49.851Z] AAB collected: apps/com.sena.mobile/builds/69a7eb4975956d5101aa9c63/com.sena.mobile(v1.0.1).aab
+[2026-03-04T08:21:49.851Z] === BUILD COMPLETE ===

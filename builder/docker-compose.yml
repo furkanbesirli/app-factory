@@ -1,0 +1,92 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    networks:
+      - default
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "127.0.0.1:27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - default
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/android_builder
+      - API_PORT=4000
+      - ARTIFACTS_ROOT=/data/artifacts
+      - KEYS_ROOT=/data/keys
+      - ASSETS_ROOT=/data/assets
+      - WORKER_IMAGE=builder-worker:latest
+      - DOCKER_NETWORK=builder_default
+      - COMPOSE_PROJECT_NAME=builder
+    volumes:
+      - artifacts:/data/artifacts
+      - keys:/data/keys
+      - assets:/data/assets
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - "4000"
+
+  # Worker image (build only — API spawns containers on demand)
+  worker:
+    build:
+      context: ..
+      dockerfile: builder/Dockerfile.worker
+    image: builder-worker:latest
+    profiles:
+      - build-image
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        - API_URL=http://api:4000
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - default
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://api:4000
+    expose:
+      - "3000"
+
+  envoy:
+    image: envoyproxy/envoy:v1.31-latest
+    restart: unless-stopped
+    depends_on:
+      - api
+      - web
+    networks:
+      - default
+    ports:
+      - "80:80"
+      - "9901:9901"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml:ro
+
+volumes:
+  mongo_data:
+  artifacts:
+  workspaces:
+  keys:
+  assets:

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Orange rounded rectangle box -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M14,14 L94,14 A6,6 0 0,1 100,20 L100,88 A6,6 0 0,1 94,94 L14,94 A6,6 0 0,1 8,88 L8,20 A6,6 0 0,1 14,14 Z"/>
+    
+    <!-- White message bubble inside (rounded rectangle) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,32 L80,32 A4,4 0 0,1 84,36 L84,60 A4,4 0 0,1 80,64 L28,64 A4,4 0 0,1 24,60 L24,36 A4,4 0 0,1 28,32 Z"/>
+    
+    <!-- Three dots (...) -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M40,46 A3,3 0 1,1 40,52 A3,3 0 1,1 40,46 Z"/>
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M54,46 A3,3 0 1,1 54,52 A3,3 0 1,1 54,46 Z"/>
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M68,46 A3,3 0 1,1 68,52 A3,3 0 1,1 68,46 Z"/>
+</vector>
+

@@ -1,0 +1,31 @@
+node_modules
+.next
+dist
+.gradle
+build
+.idea
+.kotlin
+*.log
+
+# Build artifacts (handled via Docker volumes)
+builder/artifacts
+builder/workspaces
+builder/keys
+builder/assets
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.cursor
+
+# Env files (values are in docker-compose.yml)
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db

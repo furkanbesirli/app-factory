@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="splash_background">#F5F5F5</color>
+    <color name="splash_orange">#FF6B35</color>
+    <color name="splash_white">#FFFFFF</color>
+
+    <!-- New Brand Colors -->
+    <color name="brand_primary">#f64004</color>
+    <color name="brand_secondary">#4F46E5</color>
+    <color name="brand_background_start">#2ae549</color>
+    <color name="brand_background_end">#dbdae1</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#E0E7FF</color>
+    <color name="surface_glass">#1AFFFFFF</color>
+    <color name="surface_glass_stroke">#33FFFFFF</color>
+    <color name="gen_color_3836">#0ED74E</color>
+    <color name="gen_color_ef21">#08A29B</color>
+    <color name="gen_color_6c5e">#BD6D02</color>
+    <color name="gen_color_7404">#536791</color>
+    <color name="gen_color_018f">#43AECB</color>
+    <color name="gen_color_8d9e">#F37339</color>
+    <color name="gen_color_a44a">#4882BD</color>
+    <color name="gen_color_2509">#6A2716</color>
+    <color name="gen_color_acd5">#D60F9F</color>
+    <color name="gen_color_fc2e">#7F0BC2</color>
+    <color name="gen_color_1353">#C144D9</color>
+</resources>

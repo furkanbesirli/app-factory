@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="abc_edit_text_inset_horizontal_material">16dp</dimen>
+    <dimen name="abc_edit_text_inset_top_material">12dp</dimen>
+    <dimen name="abc_edit_text_inset_bottom_material">12dp</dimen>
+    <dimen name="internal_spacing_162c">308dp</dimen>
+    <dimen name="internal_spacing_92b0">308dp</dimen>
+    <dimen name="internal_spacing_9afa">127dp</dimen>
+    <dimen name="internal_spacing_87f5">222dp</dimen>
+    <dimen name="internal_spacing_ba06">162dp</dimen>
+    <dimen name="internal_spacing_6727">340dp</dimen>
+    <dimen name="internal_spacing_443c">279dp</dimen>
+    <dimen name="internal_spacing_9aa4">199dp</dimen>
+    <dimen name="internal_spacing_f49e">226dp</dimen>
+    <dimen name="internal_spacing_3fb1">6dp</dimen>
+    <dimen name="internal_spacing_51e3">301dp</dimen>
+    <dimen name="internal_spacing_d160">83dp</dimen>
+    <dimen name="internal_spacing_5646">348dp</dimen>
+    <dimen name="internal_spacing_a640">154dp</dimen>
+    <dimen name="internal_spacing_dce5">54dp</dimen>
+    <dimen name="internal_spacing_db28">302dp</dimen>
+    <dimen name="internal_spacing_91f6">284dp</dimen>
+    <dimen name="internal_spacing_aecc">371dp</dimen>
+    <dimen name="internal_spacing_beb8">149dp</dimen>
+    <dimen name="internal_spacing_af34">244dp</dimen>
+</resources>
+

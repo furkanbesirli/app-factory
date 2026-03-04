@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+    
+    <!-- Orange rounded rectangle box -->
+    <path
+        android:fillColor="@color/splash_orange"
+        android:pathData="M20,20 L140,20 A10,10 0 0,1 150,30 L150,110 A10,10 0 0,1 140,120 L20,120 A10,10 0 0,1 10,110 L10,30 A10,10 0 0,1 20,20 Z"/>
+    
+    <!-- White message bubble inside (rounded rectangle) -->
+    <path
+        android:fillColor="@color/splash_white"
+        android:pathData="M40,45 L120,45 A5,5 0 0,1 125,50 L125,85 A5,5 0 0,1 120,90 L40,90 A5,5 0 0,1 35,85 L35,50 A5,5 0 0,1 40,45 Z"/>
+    
+    <!-- Three dots (...) - using ellipse paths for circles -->
+    <path
+        android:fillColor="@color/splash_orange"
+        android:pathData="M60,63.5 A4,4 0 1,1 60,71.5 A4,4 0 1,1 60,63.5 Z"/>
+    <path
+        android:fillColor="@color/splash_orange"
+        android:pathData="M80,63.5 A4,4 0 1,1 80,71.5 A4,4 0 1,1 80,63.5 Z"/>
+    <path
+        android:fillColor="@color/splash_orange"
+        android:pathData="M100,63.5 A4,4 0 1,1 100,71.5 A4,4 0 1,1 100,63.5 Z"/>
+</vector>
+

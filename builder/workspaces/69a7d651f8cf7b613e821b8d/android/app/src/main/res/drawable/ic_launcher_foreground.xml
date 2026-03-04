@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 
+        The foreground for an adaptive icon should be 108dp x 108dp.
+        To make the logo "fill the area" better, we give it minimal padding.
+        The safe zone is the center 66dp, but we can go up to ~80-90dp if we don't mind clipping on the edges.
+    -->
+    <item
+        android:drawable="@drawable/app_logo"
+        android:gravity="center"
+        android:width="92dp"
+        android:height="92dp" />
+</layer-list>
