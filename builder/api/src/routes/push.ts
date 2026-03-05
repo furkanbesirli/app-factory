@@ -24,7 +24,7 @@ async function fetchNotificationStats(notificationId: string, appOnesignalId: st
       headers: { 'Authorization': `Key ${apiKey}` },
     });
     if (res.ok) {
-      const data = await res.json();
+      const data = (await res.json()) as { successful?: number; failed?: number; converted?: number; remaining?: number };
       return {
         successful: data.successful || 0,
         failed: data.failed || 0,
@@ -61,7 +61,7 @@ async function sendOnePush(
       },
       body: JSON.stringify(body),
     });
-    const data = await response.json();
+    const data = (await response.json()) as { id?: string; recipients?: number; errors?: string[] };
 
     if (response.ok && data.id) {
       const stats = await fetchNotificationStats(data.id, app.onesignalAppId, app.onesignalApiKey);

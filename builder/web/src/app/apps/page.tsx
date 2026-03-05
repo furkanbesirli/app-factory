@@ -8,6 +8,7 @@ export default function AppsPage() {
   const [templates, setTemplates] = useState<any[]>([]);
   const [showCreate, setShowCreate] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
   const [form, setForm] = useState({
     templateId: "",
     displayName: "",
@@ -34,7 +35,23 @@ export default function AppsPage() {
   useEffect(() => { load(); }, []);
 
   const handleCreate = async () => {
-    if (!form.displayName || !form.applicationId || !form.templateId) return;
+    if (!form.templateId) {
+      alert("Lütfen bir taslak seçin.");
+      return;
+    }
+    if (!form.displayName?.trim()) {
+      alert("Gözüken İsim zorunludur.");
+      return;
+    }
+    if (!form.applicationId?.trim()) {
+      alert("Paket Adı zorunludur (ör: com.example.app).");
+      return;
+    }
+    if (!form.policyName?.trim()) {
+      alert("Gizlilik Politikası Adı zorunludur.");
+      return;
+    }
+    setCreating(true);
     try {
       await api.createApp(form);
       setForm({
@@ -45,7 +62,9 @@ export default function AppsPage() {
       setShowCreate(false);
       load();
     } catch (err: any) {
-      alert(err.message);
+      alert(err.message || "Bir hata oluştu.");
+    } finally {
+      setCreating(false);
     }
   };
 
@@ -167,8 +186,12 @@ export default function AppsPage() {
           </div>
 
           <div className="flex gap-2 pt-2">
-            <button onClick={handleCreate} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded text-sm font-medium">
-              OLUŞTUR
+            <button
+              onClick={handleCreate}
+              disabled={creating}
+              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-2 rounded text-sm font-medium"
+            >
+              {creating ? "Oluşturuluyor..." : "OLUŞTUR"}
             </button>
             <button onClick={() => setShowCreate(false)} className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded text-sm font-medium">
               KAPAT
