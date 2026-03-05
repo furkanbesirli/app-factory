@@ -25,6 +25,8 @@ ios/.xcode.env.local
 # Android/IntelliJ
 #
 build/
+# Next.js build route (apps/[id]/build) - do NOT ignore
+!builder/web/src/app/apps/\[id\]/build/
 .idea
 .gradle
 local.properties
