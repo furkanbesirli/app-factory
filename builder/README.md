@@ -11,11 +11,17 @@ keytool -genkeypair -v -keystore builder/keys/com.signal.test/key.jks -alias fur
 
 ### Taslak (Template) Nedir?
 
-**Taslak = Senin hazır Android projen.** Örneğin bu repodaki `./android` klasörü (Umingle uygulaması) bir taslaktır.
+**Taslak = Senin hazır Android projen.** Repoda iki farklı taslak var:
+
+| Taslak | Klasör | Login Ekranı |
+|--------|--------|-------------|
+| Umingle Template | `./android` | Glassmorphism kart, merkezi hero section |
+| Umingle V2 Template | `./android-v2` | Bottom sheet kart, minimal üst alan |
 
 - Taslak, üretilecek uygulamaların **kaynak kodu**dır
 - Aynı taslaktan farklı paket adı, uygulama adı ve logo ile birden fazla uygulama üretebilirsin
-- Orijinal `./android` klasörüne **hiç dokunulmaz** — her build kendi geçici workspace'inde çalışır
+- Her iki taslakta da logo, renkler, uygulama adı ve subtitle dinamik olarak değiştirilebilir
+- Orijinal klasörlere **hiç dokunulmaz** — her build kendi geçici workspace'inde çalışır
 
 ### Uygulama (App) Nedir?
 
@@ -184,7 +190,9 @@ cd builder/web && npm install
 cd builder/api && npm run seed
 ```
 
-Bu komut `./android` klasörünü işaret eden "Umingle Template" taslağını oluşturur.
+Bu komut iki taslak oluşturur:
+- **Umingle Template** → `./android` (orijinal login ekranı)
+- **Umingle V2 Template** → `./android-v2` (farklı login ekranı — bottom sheet)
 
 ## Çalıştırma
 
@@ -225,7 +233,7 @@ Web paneli: http://localhost:3000
 
 - http://localhost:3000/apps adresine git
 - "YENİ UYGULAMA +" tıkla
-- **Taslak:** Hangi taslağı kullanacağını seç (örn. Umingle Template)
+- **Taslak:** Hangi taslağı kullanacağını seç (Umingle Template veya Umingle V2 Template)
 - **Gözüken isim:** Play Store’da görünecek uygulama adı
 - **Paket adı:** `com.sirket.uygulama` formatında, her uygulama için benzersiz olmalı
 - **Gizlilik politikası adı:** İsteğe bağlı

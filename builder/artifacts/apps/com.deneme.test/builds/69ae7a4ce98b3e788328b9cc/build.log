@@ -1,0 +1,150 @@
+[2026-03-09T07:44:15.256Z] === STEP 1: Preparing workspace ===
+[2026-03-09T07:44:15.256Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android-v2 to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android
+[2026-03-09T07:44:15.307Z] Template copied successfully
+[2026-03-09T07:44:15.308Z] === REPACKAGE: chatonlive.com.aab → com.deneme.test ===
+[2026-03-09T07:44:15.315Z]   Replaced "chatonlive.com.aab" in 14 files
+[2026-03-09T07:44:15.319Z]   Moved source: chatonlive/com/aab/ → com/deneme/test/
+[2026-03-09T07:44:15.320Z]   Updated namespace in build.gradle → com.deneme.test
+[2026-03-09T07:44:15.320Z] === REPACKAGE: Complete ===
+[2026-03-09T07:44:15.320Z] === STEP 2: Applying parameters ===
+[2026-03-09T07:44:15.320Z] Setting applicationId = com.deneme.test
+[2026-03-09T07:44:15.320Z] Setting versionCode = 100, versionName = 1.0.0
+[2026-03-09T07:44:15.321Z] Gradle file updated
+[2026-03-09T07:44:15.321Z] Updated AndroidManifest.xml package → com.deneme.test
+[2026-03-09T07:44:15.321Z] Setting app_name EN = deneme
+[2026-03-09T07:44:15.321Z] Setting app_name TR = deneme
+[2026-03-09T07:44:15.321Z] Setting app_name ES = deneme
+[2026-03-09T07:44:15.321Z] === STEP 2b: Applying branding ===
+[2026-03-09T07:44:15.322Z] Branding applied to layout/activity_login.xml
+[2026-03-09T07:44:15.322Z] Branding applied to layout/activity_safety.xml
+[2026-03-09T07:44:15.323Z] App label set to: deneme
+[2026-03-09T07:44:15.323Z] App subtitle set to: deneme
+[2026-03-09T07:44:15.325Z] Brand name replaced in 2 source file(s)
+[2026-03-09T07:44:15.325Z] brand_background_start = #4C1D95
+[2026-03-09T07:44:15.325Z] brand_background_end = #1E1B4B
+[2026-03-09T07:44:15.325Z] brand_primary = #7C3AED
+[2026-03-09T07:44:15.327Z] Theme placeholder replaced: APP_THEME → Tbaq (Theme.Tbaq)
+[2026-03-09T07:44:15.327Z] === DIVERSIFICATION: Starting ===
+[2026-03-09T07:44:15.327Z] Injecting 8 random Kotlin classes
+[2026-03-09T07:44:15.331Z]   Created classes: UtilManager_de46, AuthEngine_adcf, SyncFilter_e1ae, CoreProvider_5150, AppFactory_bdd8, TaskManager_fc67, CacheModule_ca17, CfgService_7e22
+[2026-03-09T07:44:15.332Z] Injecting random resource entries
+[2026-03-09T07:44:15.334Z]   Resource entries injected
+[2026-03-09T07:44:15.334Z] Injecting dummy views into layouts
+[2026-03-09T07:44:15.336Z]   Dummy views added to 6 layouts
+[2026-03-09T07:44:15.336Z] Generating 2MB dummy assets
+[2026-03-09T07:44:15.339Z]   Created 6 dummy asset files (~2MB total) + AssetRefHolder to prevent stripping
+[2026-03-09T07:44:15.339Z] Generating random obfuscation dictionary
+[2026-03-09T07:44:15.341Z]   Obfuscation dictionaries configured
+[2026-03-09T07:44:15.341Z] Enabling R8/Proguard minification
+[2026-03-09T07:44:15.342Z]   R8 minification + resource shrinking enabled
+[2026-03-09T07:44:15.342Z] === DIVERSIFICATION: Complete ===
+[2026-03-09T07:44:15.342Z] === STEP 3: Setting up signing ===
+[2026-03-09T07:44:15.343Z] Keystore configured for signed release build
+[2026-03-09T07:44:15.343Z] === STEP 4: Running Gradle build ===
+[2026-03-09T07:44:15.343Z] Running: gradlew clean
+[2026-03-09T07:44:15.343Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 up-to-date
+[2026-03-09T07:44:18.230Z] Running: gradlew assembleRelease
+[2026-03-09T07:44:18.230Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+
+> Task :app:processReleaseMainManifest
+package="com.deneme.test" found in source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/app/src/main/AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.deneme.test" from the source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/app/src/main/AndroidManifest.xml.
+
+> Task :app:processReleaseManifest
+> Task :app:buildKotlinToolingMetadata
+> Task :app:processReleaseManifestForPackage
+> Task :app:javaPreCompileRelease
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:mergeReleaseResources
+> Task :app:processReleaseResources
+> Task :app:bundleReleaseResources
+
+> Task :app:compileReleaseKotlin
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/app/src/main/java/com/deneme/test/HomeActivity.kt:119:21 'setter for databaseEnabled: Boolean' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/app/src/main/java/com/deneme/test/LoginActivity.kt:211:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/app/src/main/java/com/deneme/test/services/GoogleSignInService.kt:33:17 Variable 'account' is never used
+
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:minifyReleaseWithR8
+> Task :app:compileReleaseArtProfile
+> Task :app:shrinkReleaseRes
+> Task :app:convertReleaseProtoResources
+> Task :app:optimizeReleaseResources
+> Task :app:packageRelease FAILED
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7a4ce98b3e788328b9cc/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:packageRelease'.
+> A failure occurred while executing com.android.build.gradle.tasks.PackageAndroidArtifact$IncrementalSplitterRunnable
+   > com.android.ide.common.signing.KeytoolException: Failed to read key furkankey from store "/Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/keys/com.deneme.test/key.jks": Get Key failed: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+
+* Try:
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 33s
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+47 actionable tasks: 47 executed
+[2026-03-09T07:45:51.779Z] === BUILD FAILED: gradlew assembleRelease failed with exit code 1 ===

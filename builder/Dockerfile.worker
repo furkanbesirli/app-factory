@@ -44,8 +44,9 @@ COPY builder/worker/src ./src
 COPY builder/worker/tsconfig.json ./
 RUN npm run build
 
-# Android template at /app/android (resolveFromRoot('./android') → /app/android)
+# Android templates
 COPY android/ /app/android/
+COPY android-v2/ /app/android-v2/
 
 # Data directories (mounted as Docker volumes)
 RUN mkdir -p /data/artifacts /data/workspaces /data/keys /data/assets

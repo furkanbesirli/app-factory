@@ -416,33 +416,97 @@ export async function executeBuild(ctx: BuildContext): Promise<{
     // D) Branding: logo, label, subtitle, colors
     log(logStream, '=== STEP 2b: Applying branding ===');
 
-    // D1) Logo — replace drawable/app_logo.png
+    // D1) Logo — replace drawable/app_logo.png AND all mipmap ic_launcher PNGs
     if (ctx.logoPath && fs.existsSync(ctx.logoPath)) {
+      // 1a) drawable/app_logo.png (login screen + adaptive icon foreground)
       const drawableDir = path.join(resBase, 'drawable');
       fs.ensureDirSync(drawableDir);
       const targetLogo = path.join(drawableDir, 'app_logo.png');
       fs.copySync(ctx.logoPath, targetLogo, { overwrite: true });
       log(logStream, `Logo replaced: ${ctx.logoPath} → drawable/app_logo.png`);
+
+      // 1b) mipmap-*/ic_launcher.png and ic_launcher_round.png
+      // Guarantees the icon is visible on all Android versions and all launchers
+      const mipmapDensities = ['mipmap-mdpi', 'mipmap-hdpi', 'mipmap-xhdpi', 'mipmap-xxhdpi', 'mipmap-xxxhdpi'];
+      let mipmapCount = 0;
+      for (const density of mipmapDensities) {
+        const densityDir = path.join(resBase, density);
+        fs.ensureDirSync(densityDir);
+        fs.copySync(ctx.logoPath, path.join(densityDir, 'ic_launcher.png'), { overwrite: true });
+        fs.copySync(ctx.logoPath, path.join(densityDir, 'ic_launcher_round.png'), { overwrite: true });
+        mipmapCount++;
+      }
+      log(logStream, `Logo copied to ${mipmapCount} mipmap densities (ic_launcher.png + ic_launcher_round.png)`);
+
+      // 1c) Update mipmap-anydpi-v26 adaptive icon to use PNG directly as foreground
+      const anydpiDir = path.join(resBase, 'mipmap-anydpi-v26');
+      fs.ensureDirSync(anydpiDir);
+      const adaptiveLauncherXml = `<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>`;
+      fs.writeFileSync(path.join(anydpiDir, 'ic_launcher.xml'), adaptiveLauncherXml);
+      fs.writeFileSync(path.join(anydpiDir, 'ic_launcher_round.xml'), adaptiveLauncherXml);
+      log(logStream, `Adaptive icon XML updated`);
     }
 
-    // D2) Label & subtitle in activity_login.xml
-    const loginLayoutPath = path.join(resBase, 'layout', 'activity_login.xml');
-    if (fs.existsSync(loginLayoutPath)) {
-      let loginLayout = fs.readFileSync(loginLayoutPath, 'utf-8');
+    // D2) Label & subtitle — replace across all layout XMLs
+    const layoutDir = path.join(resBase, 'layout');
+    if (fs.existsSync(layoutDir)) {
+      const layoutFiles = fs.readdirSync(layoutDir).filter((f: string) => f.endsWith('.xml'));
+      for (const lf of layoutFiles) {
+        const lfPath = path.join(layoutDir, lf);
+        let content = fs.readFileSync(lfPath, 'utf-8');
+        let changed = false;
 
-      if (ctx.appLabel) {
-        loginLayout = replaceXmlText(loginLayout, 'android:text="Umingle"', `android:text="${ctx.appLabel}"`);
-        loginLayout = replaceXmlText(loginLayout, 'Explore Umingle', `Explore ${ctx.appLabel}`);
-        loginLayout = replaceXmlText(loginLayout, 'Umingle Trends', `${ctx.appLabel} Trends`);
-        log(logStream, `Login label set to: ${ctx.appLabel}`);
+        if (ctx.appLabel && content.includes('Umingle')) {
+          content = replaceXmlText(content, 'android:text="Umingle"', `android:text="${ctx.appLabel}"`);
+          content = replaceXmlText(content, 'Explore Umingle', `Explore ${ctx.appLabel}`);
+          content = replaceXmlText(content, 'Umingle Trends', `${ctx.appLabel} Trends`);
+          content = replaceXmlText(content, 'Discover Umingle', `Discover ${ctx.appLabel}`);
+          content = replaceXmlText(content, 'Umingle Plus', `${ctx.appLabel} Plus`);
+          content = replaceXmlText(content, 'Umingle Pulse', `${ctx.appLabel} Pulse`);
+          changed = true;
+        }
+        if (ctx.appSubtitle && content.includes('Connect. Chat. Spark.')) {
+          content = replaceXmlText(content, 'Connect. Chat. Spark.', ctx.appSubtitle);
+          changed = true;
+        }
+
+        if (changed) {
+          fs.writeFileSync(lfPath, content);
+          log(logStream, `Branding applied to layout/${lf}`);
+        }
       }
+      if (ctx.appLabel) log(logStream, `App label set to: ${ctx.appLabel}`);
+      if (ctx.appSubtitle) log(logStream, `App subtitle set to: ${ctx.appSubtitle}`);
+    }
 
-      if (ctx.appSubtitle) {
-        loginLayout = replaceXmlText(loginLayout, 'Connect. Chat. Spark.', ctx.appSubtitle);
-        log(logStream, `Login subtitle set to: ${ctx.appSubtitle}`);
+    // D2b) Replace brand name in Kotlin/Java source (default documents, etc.)
+    if (ctx.appLabel && ctx.appLabel !== 'Umingle') {
+      const javaBase = path.join(projectPath, 'app', 'src', 'main', 'java');
+      if (fs.existsSync(javaBase)) {
+        const replaceInSrc = (dir: string): number => {
+          let count = 0;
+          const entries = fs.readdirSync(dir, { withFileTypes: true });
+          for (const entry of entries) {
+            const fp = path.join(dir, entry.name);
+            if (entry.isDirectory()) { count += replaceInSrc(fp); continue; }
+            if (!entry.name.endsWith('.kt') && !entry.name.endsWith('.java')) continue;
+            let src = fs.readFileSync(fp, 'utf-8');
+            if (!src.includes('Umingle')) continue;
+            src = src.split('UMINGLE').join(ctx.appLabel!.toUpperCase());
+            src = src.split('Umingle').join(ctx.appLabel!);
+            src = src.split('umingle').join(ctx.appLabel!.toLowerCase());
+            fs.writeFileSync(fp, src);
+            count++;
+          }
+          return count;
+        };
+        const srcCount = replaceInSrc(javaBase);
+        if (srcCount > 0) log(logStream, `Brand name replaced in ${srcCount} source file(s)`);
       }
-
-      fs.writeFileSync(loginLayoutPath, loginLayout);
     }
 
     // D3) Colors — update colors.xml

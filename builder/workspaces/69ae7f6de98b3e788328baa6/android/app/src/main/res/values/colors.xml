@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="splash_background">#F5F5F5</color>
+    <color name="splash_orange">#FF6B35</color>
+    <color name="splash_white">#FFFFFF</color>
+
+    <!-- New Brand Colors -->
+    <color name="brand_primary">#7C3AED</color>
+    <color name="brand_secondary">#4F46E5</color>
+    <color name="brand_background_start">#d0c2e5</color>
+    <color name="brand_background_end">#1E1B4B</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#E0E7FF</color>
+    <color name="surface_glass">#1AFFFFFF</color>
+    <color name="surface_glass_stroke">#33FFFFFF</color>
+
+    <!-- V2 Bottom Sheet Colors -->
+    <color name="v2_sheet_bg">#FFFFFF</color>
+    <color name="v2_sheet_text">#1A1A2E</color>
+    <color name="v2_sheet_text_dim">#6B7280</color>
+    <color name="gen_color_5ca9">#B11AF7</color>
+    <color name="gen_color_53b9">#6FBB60</color>
+    <color name="gen_color_7d2c">#3F8744</color>
+    <color name="gen_color_050e">#2EE4FF</color>
+    <color name="gen_color_9ebb">#03ABC7</color>
+    <color name="gen_color_5ddd">#74DB7E</color>
+    <color name="gen_color_c9fb">#E3A784</color>
+    <color name="gen_color_29f8">#A91812</color>
+    <color name="gen_color_1798">#329163</color>
+    <color name="gen_color_9fc5">#5F9BC4</color>
+    <color name="gen_color_8b89">#F59FCD</color>
+    <color name="gen_color_1961">#746A52</color>
+    <color name="gen_color_81c2">#A869F9</color>
+    <color name="gen_color_cca6">#283AC4</color>
+</resources>

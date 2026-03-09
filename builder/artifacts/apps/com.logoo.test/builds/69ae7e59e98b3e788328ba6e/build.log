@@ -1,0 +1,93 @@
+[2026-03-09T08:01:33.593Z] === STEP 1: Preparing workspace ===
+[2026-03-09T08:01:33.594Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android-v2 to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7e59e98b3e788328ba6e/android
+[2026-03-09T08:01:33.648Z] Template copied successfully
+[2026-03-09T08:01:33.649Z] === REPACKAGE: chatonlive.com.aab → com.logoo.test ===
+[2026-03-09T08:01:33.659Z]   Replaced "chatonlive.com.aab" in 14 files
+[2026-03-09T08:01:33.663Z]   Moved source: chatonlive/com/aab/ → com/logoo/test/
+[2026-03-09T08:01:33.664Z]   Updated namespace in build.gradle → com.logoo.test
+[2026-03-09T08:01:33.664Z] === REPACKAGE: Complete ===
+[2026-03-09T08:01:33.664Z] === STEP 2: Applying parameters ===
+[2026-03-09T08:01:33.664Z] Setting applicationId = com.logoo.test
+[2026-03-09T08:01:33.664Z] Setting versionCode = 100, versionName = 1.0.0
+[2026-03-09T08:01:33.665Z] Gradle file updated
+[2026-03-09T08:01:33.665Z] Updated AndroidManifest.xml package → com.logoo.test
+[2026-03-09T08:01:33.665Z] Setting app_name EN = logo2
+[2026-03-09T08:01:33.665Z] Setting app_name TR = logo2
+[2026-03-09T08:01:33.665Z] Setting app_name ES = logo2
+[2026-03-09T08:01:33.665Z] === STEP 2b: Applying branding ===
+[2026-03-09T08:01:33.666Z] Branding applied to layout/activity_login.xml
+[2026-03-09T08:01:33.666Z] Branding applied to layout/activity_safety.xml
+[2026-03-09T08:01:33.667Z] App label set to: logo2
+[2026-03-09T08:01:33.667Z] App subtitle set to: logo2
+[2026-03-09T08:01:33.669Z] Brand name replaced in 2 source file(s)
+[2026-03-09T08:01:33.669Z] brand_background_start = #4C1D95
+[2026-03-09T08:01:33.669Z] brand_background_end = #1E1B4B
+[2026-03-09T08:01:33.669Z] brand_primary = #7C3AED
+[2026-03-09T08:01:33.671Z] Theme placeholder replaced: APP_THEME → Lpkj (Theme.Lpkj)
+[2026-03-09T08:01:33.671Z] === DIVERSIFICATION: Starting ===
+[2026-03-09T08:01:33.671Z] Injecting 8 random Kotlin classes
+[2026-03-09T08:01:33.674Z]   Created classes: CacheHandler_5f99, CoreResolver_57c6, DataGuard_1d5c, NetProvider_501c, AppObserver_b167, LogAdapter_f8c0, TaskService_74ce, CoreHelper_41a8
+[2026-03-09T08:01:33.675Z] Injecting random resource entries
+[2026-03-09T08:01:33.675Z]   Resource entries injected
+[2026-03-09T08:01:33.676Z] Injecting dummy views into layouts
+[2026-03-09T08:01:33.678Z]   Dummy views added to 6 layouts
+[2026-03-09T08:01:33.678Z] Generating 2MB dummy assets
+[2026-03-09T08:01:33.680Z]   Created 5 dummy asset files (~2MB total) + AssetRefHolder to prevent stripping
+[2026-03-09T08:01:33.680Z] Generating random obfuscation dictionary
+[2026-03-09T08:01:33.681Z]   Obfuscation dictionaries configured
+[2026-03-09T08:01:33.681Z] Enabling R8/Proguard minification
+[2026-03-09T08:01:33.682Z]   R8 minification + resource shrinking enabled
+[2026-03-09T08:01:33.682Z] === DIVERSIFICATION: Complete ===
+[2026-03-09T08:01:33.682Z] === STEP 3: Setting up signing ===
+[2026-03-09T08:01:33.682Z] Keystore configured for signed release build
+[2026-03-09T08:01:33.682Z] === STEP 4: Running Gradle build ===
+[2026-03-09T08:01:33.682Z] Running: gradlew clean
+[2026-03-09T08:01:33.682Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7e59e98b3e788328ba6e/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 up-to-date
+[2026-03-09T08:01:37.183Z] Running: gradlew assembleRelease
+[2026-03-09T08:01:37.184Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+
+> Task :app:mergeReleaseResources FAILED
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7e59e98b3e788328ba6e/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.ERROR: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7e59e98b3e788328ba6e/android/app/src/main/res/values/colors.xml: Resource and asset merger: Found item Color/gen_color_ae1c more than one time
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:mergeReleaseResources'.
+> /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae7e59e98b3e788328ba6e/android/app/src/main/res/values/colors.xml: Error: Found item Color/gen_color_ae1c more than one time
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+
+6 actionable tasks: 6 executed
+BUILD FAILED in 4s
+[2026-03-09T08:01:42.317Z] === BUILD FAILED: gradlew assembleRelease failed with exit code 1 ===

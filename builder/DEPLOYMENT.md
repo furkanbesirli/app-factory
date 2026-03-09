@@ -167,15 +167,17 @@ docker compose exec api npm run seed
 ```
 
 Bu komut:
-- "Umingle Template" oluşturur (`./android` klasörüne işaret eder)
-- MongoDB'ye bir template kaydı ekler
+- "Umingle Template" oluşturur (`./android` — orijinal glassmorphism login ekranı)
+- "Umingle V2 Template" oluşturur (`./android-v2` — bottom sheet login ekranı)
+- MongoDB'ye template kayıtları ekler
 
 **Seed çıktısı:**
 
 ```
-MongoDB connected
-Template created: Umingle Template
-Seed data inserted
+Connected to MongoDB
+Template oluşturuldu: "Umingle Template" → <id>
+Template oluşturuldu: "Umingle V2 Template" → <id>
+Seed tamamlandı.
 ```
 
 ---

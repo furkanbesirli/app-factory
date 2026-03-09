@@ -34,6 +34,14 @@ export default function AppsPage() {
 
   useEffect(() => { load(); }, []);
 
+  // Android package name: lowercase letters, digits, dots. At least 2 segments (e.g. com.app).
+  const isValidPackageName = (id: string): boolean => {
+    if (!id.trim()) return false;
+    const segments = id.trim().split('.');
+    if (segments.length < 2) return false;
+    return segments.every(s => s.length > 0 && /^[a-z][a-z0-9_]*$/.test(s));
+  };
+
   const handleCreate = async () => {
     if (!form.templateId) {
       alert("Lütfen bir taslak seçin.");
@@ -45,6 +53,21 @@ export default function AppsPage() {
     }
     if (!form.applicationId?.trim()) {
       alert("Paket Adı zorunludur (ör: com.example.app).");
+      return;
+    }
+    if (!isValidPackageName(form.applicationId)) {
+      alert(
+        "Paket Adı geçersiz format!\n\n" +
+        "Kurallar:\n" +
+        "• Küçük harf, rakam, alt çizgi ve nokta kullanın\n" +
+        "• En az 2 segment olmalı (örn: com.uygulama)\n" +
+        "• Her segment harf ile başlamalı\n" +
+        "• Büyük harf kullanmayın\n\n" +
+        "Geçerli örnekler:\n" +
+        "  com.sirket.uygulama\n" +
+        "  com.test.app\n" +
+        "  org.example.myapp"
+      );
       return;
     }
     if (!form.policyName?.trim()) {
@@ -62,7 +85,17 @@ export default function AppsPage() {
       setShowCreate(false);
       load();
     } catch (err: any) {
-      alert(err.message || "Bir hata oluştu.");
+      // Show user-friendly messages for common errors
+      const msg = err.message || "";
+      if (msg.includes("E11000") || msg.includes("duplicate key") || msg.includes("applicationId")) {
+        alert(`Bu paket adı zaten kullanımda: "${form.applicationId}"\n\nFarklı bir paket adı girin.`);
+      } else if (msg.includes("policyName")) {
+        alert("Gizlilik Politikası Adı zorunludur.");
+      } else if (msg.includes("templateId")) {
+        alert("Lütfen bir taslak seçin.");
+      } else {
+        alert(msg || "Bir hata oluştu. Lütfen tekrar deneyin.");
+      }
     } finally {
       setCreating(false);
     }
@@ -99,8 +132,22 @@ export default function AppsPage() {
 
           <input placeholder="Gözüken İsim" value={form.displayName}
             onChange={(e) => setForm({ ...form, displayName: e.target.value })} className={inputCls} />
-          <input placeholder="Paket Adı (ör: com.example.app)" value={form.applicationId}
-            onChange={(e) => setForm({ ...form, applicationId: e.target.value })} className={inputCls} />
+          <div className="relative">
+            <input
+              placeholder="Paket Adı (ör: com.sirket.uygulama)"
+              value={form.applicationId}
+              onChange={(e) => setForm({ ...form, applicationId: e.target.value.toLowerCase().replace(/[^a-z0-9._]/g, '') })}
+              className={`${inputCls} ${form.applicationId && !isValidPackageName(form.applicationId) ? 'border-red-500' : form.applicationId && isValidPackageName(form.applicationId) ? 'border-green-500' : ''}`}
+            />
+            {form.applicationId && !isValidPackageName(form.applicationId) && (
+              <p className="text-xs text-red-400 mt-1">
+                ⚠ Geçersiz format — küçük harf, nokta, rakam. Örn: com.sirket.app
+              </p>
+            )}
+            {form.applicationId && isValidPackageName(form.applicationId) && (
+              <p className="text-xs text-green-400 mt-1">✓ Geçerli paket adı</p>
+            )}
+          </div>
           <input placeholder="Gizlilik Politikası Adı" value={form.policyName}
             onChange={(e) => setForm({ ...form, policyName: e.target.value })} className={inputCls} />
 
