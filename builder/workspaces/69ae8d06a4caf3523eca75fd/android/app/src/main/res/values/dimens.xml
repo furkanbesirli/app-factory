@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="abc_edit_text_inset_horizontal_material">16dp</dimen>
+    <dimen name="abc_edit_text_inset_top_material">12dp</dimen>
+    <dimen name="abc_edit_text_inset_bottom_material">12dp</dimen>
+    <dimen name="internal_spacing_5214">128dp</dimen>
+    <dimen name="internal_spacing_35d4">391dp</dimen>
+    <dimen name="internal_spacing_21ef">249dp</dimen>
+    <dimen name="internal_spacing_8c64">59dp</dimen>
+    <dimen name="internal_spacing_27c6">259dp</dimen>
+    <dimen name="internal_spacing_6ba0">227dp</dimen>
+    <dimen name="internal_spacing_93a2">101dp</dimen>
+    <dimen name="internal_spacing_26fc">301dp</dimen>
+    <dimen name="internal_spacing_2683">121dp</dimen>
+    <dimen name="internal_spacing_038a">318dp</dimen>
+    <dimen name="internal_spacing_63fa">342dp</dimen>
+    <dimen name="internal_spacing_3e18">91dp</dimen>
+</resources>
+

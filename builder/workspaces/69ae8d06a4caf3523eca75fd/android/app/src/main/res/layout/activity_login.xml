@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_gradient">
+
+    <!-- Top Area: Logo + Brand -->
+    <LinearLayout
+        android:id="@+id/topArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomSheet"
+        app:layout_constraintVertical_bias="0.45">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:src="@drawable/app_logo"
+            android:scaleType="fitCenter"
+            android:background="@drawable/bg_logo_circle"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logo2"
+            android:textSize="36sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="-0.02" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="logo2"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="6dp"
+            android:alpha="0.85" />
+
+    </LinearLayout>
+
+    <!-- Bottom Sheet Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="24dp"
+        app:cardBackgroundColor="@color/v2_sheet_bg"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="28dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome"
+                android:textSize="28sp"
+                android:textColor="@color/v2_sheet_text"
+                android:fontFamily="sans-serif-bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in to discover people nearby"
+                android:textSize="14sp"
+                android:textColor="@color/v2_sheet_text_dim"
+                android:layout_marginTop="6dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogleSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Continue with Google"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textColor="#333333"
+                android:fontFamily="sans-serif-medium"
+                app:cornerRadius="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:icon="@drawable/ic_google_logo"
+                app:iconTint="@null"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                android:layout_marginTop="28dp"
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="1dp"
+                app:elevation="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGuestLogin"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Enter as Guest"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                app:cornerRadius="16dp"
+                android:backgroundTint="@color/brand_primary"
+                android:layout_marginTop="12dp"
+                app:elevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By continuing, you agree to our Terms and Privacy."
+                android:textColor="@color/v2_sheet_text_dim"
+                android:textSize="11sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:alpha="0.6" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Sidebar Button — pill style, top-left -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSidebar"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="24dp"
+        android:text="Menu"
+        android:textAllCaps="false"
+        android:textColor="@color/text_primary"
+        android:textSize="13sp"
+        app:icon="@drawable/ic_menu_modern"
+        app:iconTint="@color/text_primary"
+        app:iconSize="18dp"
+        app:iconGravity="textStart"
+        app:backgroundTint="#26FFFFFF"
+        app:cornerRadius="20dp"
+        app:rippleColor="#20FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Menu" />
+
+    <!-- Sidebar Overlay -->
+    <View
+        android:id="@+id/sidebarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Sidebar — right-aligned full-height drawer with icon nav items -->
+    <LinearLayout
+        android:id="@+id/sidebar"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/v2_sheet_bg"
+        android:visibility="gone"
+        android:elevation="32dp"
+        app:layout_constraintWidth_percent="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Drawer Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="56dp"
+            android:paddingBottom="16dp"
+            android:paddingHorizontal="24dp"
+            android:background="@drawable/bg_login_gradient">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/app_logo"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/bg_logo_circle"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="logo2"
+                    android:textSize="22sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-bold"
+                    android:layout_marginStart="14dp" />
+
+                <ImageButton
+                    android:id="@+id/btnSidebarClose"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/text_primary" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connect with people worldwide"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="10dp"
+                android:alpha="0.8" />
+        </LinearLayout>
+
+        <!-- Nav Items -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="12dp">
+
+                <!-- About -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemSafety"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_live" app:tint="@color/brand_primary" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="About App" android:textColor="@color/v2_sheet_text" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Privacy Policy -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_secure" app:tint="@color/brand_primary" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Privacy Policy" android:textColor="@color/v2_sheet_text" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Terms -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemTerms"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_anonymous" app:tint="@color/brand_primary" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Terms of Service" android:textColor="@color/v2_sheet_text" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Community -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemCommunity"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_global" app:tint="@color/brand_primary" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Community Rules" android:textColor="@color/v2_sheet_text" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Cookies -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemCookies"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_free" app:tint="@color/brand_primary" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cookie Policy" android:textColor="@color/v2_sheet_text" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#10000000" android:layout_marginVertical="8dp" android:layout_marginHorizontal="24dp" />
+
+                <!-- How It Works -->
+                <LinearLayout
+                    android:id="@+id/sidebarItemHowItWorks"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="24dp"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/feature_icon_video" app:tint="#9CA3AF" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="How It Works" android:textColor="#6B7280" android:textSize="15sp" android:fontFamily="sans-serif-medium" android:layout_marginStart="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Drawer Footer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="v1.0.0"
+            android:textColor="#9CA3AF"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:paddingVertical="16dp" />
+
+    </LinearLayout>
+
+    <!-- Document Modal -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/documentModal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="32dp"
+        app:cardBackgroundColor="@color/v2_sheet_bg"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="24dp">
+                <TextView
+                    android:id="@+id/documentTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:fontFamily="sans-serif-bold"
+                    android:textColor="@color/v2_sheet_text"
+                    android:text="Document"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnDocumentClose"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+                <ImageButton
+                    android:id="@+id/btnDocumentClose"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/v2_sheet_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#10000000" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="24dp">
+                <TextView
+                    android:id="@+id/documentContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/v2_sheet_text_dim"
+                    android:lineSpacingMultiplier="1.6"
+                    android:text="Loading..." />
+            </androidx.core.widget.NestedScrollView>
+
+            <ProgressBar
+                android:id="@+id/documentProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateTint="@color/brand_primary" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <View android:id="@+id/gen_view_607290" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="b835a23f" />
+    <View android:id="@+id/gen_view_eedf94" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="e8ed8a9f" />
+    <View android:id="@+id/gen_view_2e0901" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="7fdd8d22" />
+</androidx.constraintlayout.widget.ConstraintLayout>

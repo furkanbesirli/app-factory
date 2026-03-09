@@ -18,11 +18,7 @@ builder/keys/
 
 ```bash
 mkdir -p builder/keys/com.furkan.app
-keytool -genkeypair -v -keystore builder/keys/com.furkan.app/key.jks \
-  -alias furkankey -keyalg RSA -keysize 2048 -validity 10000 \
-  -storepass furkankey -keypass furkankey \
-  -dname "CN=Furkan, OU=Dev, O=App, L=Istanbul, ST=Istanbul, C=TR"
-```
+keytool -genkeypair -v -keystore builder/keys/com.thundr.app/key.jks -alias furkankey -keyalg RSA -keysize 2048 -validity 10000 -storepass furkankey -keypass furkankey -dname "CN=thundr, OU=Dev, O=App, L=Newcastle, ST=Newcastle, C=UK"
 
 ## Manuel Yerleştirme
 

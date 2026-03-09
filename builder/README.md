@@ -23,6 +23,18 @@ keytool -genkeypair -v -keystore builder/keys/com.signal.test/key.jks -alias fur
 - Her iki taslakta da logo, renkler, uygulama adı ve subtitle dinamik olarak değiştirilebilir
 - Orijinal klasörlere **hiç dokunulmaz** — her build kendi geçici workspace'inde çalışır
 
+### Logo Boyutları (Ana Ekran İkonu)
+
+Ana ekranda logo **zoom/crop olmadan** tam görünsün diye:
+
+| Format | Boyut | Açıklama |
+|--------|-------|----------|
+| **Önerilen** | **512×512 px** | Kare, PNG. Logo ortada, kenarlarda boşluk bırak. |
+| Minimum | 432×432 px | xxxhdpi adaptive icon için yeterli |
+| Play Store | 512×512 px | Play Console gereksinimi |
+
+Logo kare olmalı (1:1). İçerik ortada, kenarlarda ~%10–15 boşluk bırak — Android safe zone (66dp) dışı kesilebilir.
+
 ### Uygulama (App) Nedir?
 
 **Uygulama = Taslaktan üretilen bir "marka" veya "versiyon".**

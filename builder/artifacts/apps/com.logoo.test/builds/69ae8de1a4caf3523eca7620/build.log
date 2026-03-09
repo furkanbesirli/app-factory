@@ -1,0 +1,213 @@
+[2026-03-09T09:07:52.527Z] === STEP 1: Preparing workspace ===
+[2026-03-09T09:07:52.527Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android-v2 to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android
+[2026-03-09T09:07:52.598Z] Template copied successfully
+[2026-03-09T09:07:52.599Z] === REPACKAGE: chatonlive.com.aab → com.logoo.test ===
+[2026-03-09T09:07:52.612Z]   Replaced "chatonlive.com.aab" in 14 files
+[2026-03-09T09:07:52.624Z]   Moved source: chatonlive/com/aab/ → com/logoo/test/
+[2026-03-09T09:07:52.625Z]   Updated namespace in build.gradle → com.logoo.test
+[2026-03-09T09:07:52.625Z] === REPACKAGE: Complete ===
+[2026-03-09T09:07:52.625Z] === STEP 2: Applying parameters ===
+[2026-03-09T09:07:52.625Z] Setting applicationId = com.logoo.test
+[2026-03-09T09:07:52.625Z] Setting versionCode = 106, versionName = 1.0.6
+[2026-03-09T09:07:52.625Z] Gradle file updated
+[2026-03-09T09:07:52.625Z] Updated AndroidManifest.xml package → com.logoo.test
+[2026-03-09T09:07:52.625Z] Setting app_name EN = logo2
+[2026-03-09T09:07:52.626Z] Setting app_name TR = logo2
+[2026-03-09T09:07:52.626Z] Setting app_name ES = logo2
+[2026-03-09T09:07:52.626Z] === STEP 2b: Applying branding ===
+[2026-03-09T09:07:52.628Z] Logo replaced: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/assets/com.logoo.test/logo.png → drawable/app_logo.png
+[2026-03-09T09:07:52.631Z] Logo copied to 5 mipmap densities (ic_launcher.png + ic_launcher_round.png)
+[2026-03-09T09:07:52.631Z] Adaptive icon XML updated
+[2026-03-09T09:07:52.632Z] Branding applied to layout/activity_login.xml
+[2026-03-09T09:07:52.632Z] Branding applied to layout/activity_safety.xml
+[2026-03-09T09:07:52.633Z] App label set to: logo2
+[2026-03-09T09:07:52.633Z] App subtitle set to: logo2
+[2026-03-09T09:07:52.635Z] Brand name replaced in 2 source file(s)
+[2026-03-09T09:07:52.635Z] brand_background_start = #d0c2e5
+[2026-03-09T09:07:52.635Z] brand_background_end = #1E1B4B
+[2026-03-09T09:07:52.635Z] brand_primary = #7C3AED
+[2026-03-09T09:07:52.636Z] Theme placeholder replaced: APP_THEME → Dds (Theme.Dds)
+[2026-03-09T09:07:52.636Z] === DIVERSIFICATION: Starting ===
+[2026-03-09T09:07:52.636Z] Injecting 8 random Kotlin classes
+[2026-03-09T09:07:52.638Z]   Created classes: SyncWorker_4456, CfgResolver_45e1, SysWorker_8778, SysFilter_3f8e, CfgManager_5c78, AuthModule_f8a6, SyncHandler_099d, EventAdapter_0c57
+[2026-03-09T09:07:52.639Z] Injecting random resource entries
+[2026-03-09T09:07:52.639Z]   Resource entries injected
+[2026-03-09T09:07:52.639Z] Injecting dummy views into layouts
+[2026-03-09T09:07:52.641Z]   Dummy views added to 6 layouts
+[2026-03-09T09:07:52.641Z] Generating 2MB dummy assets
+[2026-03-09T09:07:52.642Z]   Created 3 dummy asset files (~2MB total) + AssetRefHolder to prevent stripping
+[2026-03-09T09:07:52.642Z] Generating random obfuscation dictionary
+[2026-03-09T09:07:52.643Z]   Obfuscation dictionaries configured
+[2026-03-09T09:07:52.643Z] Enabling R8/Proguard minification
+[2026-03-09T09:07:52.644Z]   R8 minification + resource shrinking enabled
+[2026-03-09T09:07:52.644Z] === DIVERSIFICATION: Complete ===
+[2026-03-09T09:07:52.644Z] === STEP 3: Setting up signing ===
+[2026-03-09T09:07:52.644Z] Keystore configured for signed release build
+[2026-03-09T09:07:52.644Z] === STEP 4: Running Gradle build ===
+[2026-03-09T09:07:52.644Z] Running: gradlew clean
+[2026-03-09T09:07:52.644Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 up-to-date
+[2026-03-09T09:07:54.614Z] Running: gradlew assembleRelease
+[2026-03-09T09:07:54.614Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+
+> Task :app:processReleaseMainManifest
+package="com.logoo.test" found in source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/app/src/main/AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.logoo.test" from the source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/app/src/main/AndroidManifest.xml.
+
+> Task :app:processReleaseManifest
+> Task :app:buildKotlinToolingMetadata
+> Task :app:javaPreCompileRelease
+> Task :app:processReleaseManifestForPackage
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseShaders
+> Task :app:mergeReleaseArtProfile
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:compressReleaseAssets
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:mergeReleaseResources
+> Task :app:processReleaseResources
+> Task :app:bundleReleaseResources
+
+> Task :app:compileReleaseKotlin
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/app/src/main/java/com/logoo/test/HomeActivity.kt:119:21 'setter for databaseEnabled: Boolean' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/app/src/main/java/com/logoo/test/LoginActivity.kt:211:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/app/src/main/java/com/logoo/test/services/GoogleSignInService.kt:33:17 Variable 'account' is never used
+
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:minifyReleaseWithR8
+> Task :app:compileReleaseArtProfile
+> Task :app:shrinkReleaseRes
+> Task :app:convertReleaseProtoResources
+> Task :app:optimizeReleaseResources
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 37s
+48 actionable tasks: 48 executed
+[2026-03-09T09:08:32.398Z] Running: gradlew bundleRelease
+[2026-03-09T09:08:32.399Z] > ./gradlew bundleRelease
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:generateReleaseFeatureMetadata
+> Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:checkReleaseAarMetadata UP-TO-DATE
+> Task :app:generateReleaseResValues UP-TO-DATE
+> Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseResources UP-TO-DATE
+> Task :app:packageReleaseResources UP-TO-DATE
+> Task :app:parseReleaseLocalResources UP-TO-DATE
+> Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksRelease UP-TO-DATE
+> Task :app:processReleaseMainManifest UP-TO-DATE
+> Task :app:processReleaseManifest UP-TO-DATE
+> Task :app:processReleaseManifestForPackage UP-TO-DATE
+> Task :app:processReleaseResources UP-TO-DATE
+> Task :app:compileReleaseKotlin UP-TO-DATE
+> Task :app:javaPreCompileRelease UP-TO-DATE
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:mergeReleaseArtProfile UP-TO-DATE
+> Task :app:expandReleaseArtProfileWildcards UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processReleaseJavaRes UP-TO-DATE
+> Task :app:mergeReleaseJavaResource UP-TO-DATE
+> Task :app:mergeReleaseStartupProfile UP-TO-DATE
+> Task :app:minifyReleaseWithR8 UP-TO-DATE
+> Task :app:processApplicationManifestReleaseForBundle UP-TO-DATE
+> Task :app:bundleReleaseResources UP-TO-DATE
+> Task :app:extractReleaseVersionControlInfo UP-TO-DATE
+> Task :app:mergeReleaseShaders UP-TO-DATE
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:writeReleaseAppMetadata UP-TO-DATE
+> Task :app:buildReleasePreBundle
+> Task :app:compileReleaseArtProfile UP-TO-DATE
+> Task :app:collectReleaseDependencies UP-TO-DATE
+> Task :app:configureReleaseDependencies
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:validateSigningRelease UP-TO-DATE
+> Task :app:packageReleaseBundle
+> Task :app:shrinkBundleReleaseResources
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69ae8de1a4caf3523eca7620/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+45 actionable tasks: 10 executed, 35 up-to-date
+[2026-03-09T09:08:35.524Z] === STEP 5: Collecting artifacts ===
+[2026-03-09T09:08:35.535Z] APK collected: apps/com.logoo.test/builds/69ae8de1a4caf3523eca7620/com.logoo.test(v1.0.6).apk
+[2026-03-09T09:08:35.546Z] AAB collected: apps/com.logoo.test/builds/69ae8de1a4caf3523eca7620/com.logoo.test(v1.0.6).aab
+[2026-03-09T09:08:35.576Z] Mapping collected: apps/com.logoo.test/builds/69ae8de1a4caf3523eca7620/mapping.txt
+[2026-03-09T09:08:35.576Z] === BUILD COMPLETE ===

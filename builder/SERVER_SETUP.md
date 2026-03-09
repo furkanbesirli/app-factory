@@ -175,8 +175,23 @@ Bu işlem **5–10 dakika** sürebilir (API, Web, dependencies).
 
 ### 8.2 Worker image'ını build et
 
+**ÖNEMLİ:** `builder/` içinden çalıştır — context proje kökü (`..`) olmalı ki `android/` ve `android-v2/` kopyalansın.
+
 ```bash
+cd /opt/apps/com-umingleapp-aab/builder
 docker compose --profile build-image build
+```
+
+Önce `android-v2` klasörünün sunucuda olduğunu doğrula:
+
+```bash
+ls -la /opt/apps/com-umingleapp-aab/android-v2
+```
+
+Yoksa `git pull` veya `git checkout` ile projeyi güncelle. Sonra cache'siz yeniden build et:
+
+```bash
+docker compose --profile build-image build --no-cache worker
 ```
 
 Bu işlem **10–15 dakika** sürebilir (Android SDK indiriliyor).
@@ -322,6 +337,22 @@ docker compose logs worker
 # veya build container logları:
 docker ps -a --filter "name=build-"
 ```
+
+### ENOENT: no such file or directory, lstat '/app/android-v2'
+
+Bu hata, Worker imajında `android-v2` taslağının olmadığını gösterir. Çözüm:
+
+1. Sunucuda `android-v2` klasörünü kontrol et:
+   ```bash
+   ls -la /opt/apps/com-umingleapp-aab/android-v2
+   ```
+2. Yoksa projeyi güncelle: `git pull` veya ilgili branch'e geç.
+3. Worker imajını cache'siz yeniden build et:
+   ```bash
+   cd /opt/apps/com-umingleapp-aab/builder
+   docker compose --profile build-image build --no-cache worker
+   ```
+4. Taslak oluştururken **Yerel Yol** alanına `./android-v2` yaz (veya `android-v2`).
 
 ### MongoDB bağlantı hatası
 

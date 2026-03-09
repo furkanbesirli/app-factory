@@ -504,7 +504,7 @@ export default function AppDetailPage() {
             </div>
           )}
           <div className="space-y-3">
-            <p className="text-xs text-gray-500">PNG formatında, tercihen kare (512x512 px)</p>
+            <p className="text-xs text-gray-500">PNG, kare 512×512 px. Logo ortada, kenarlarda boşluk bırak — ana ekranda zoom olmadan tam görünür.</p>
             {logoPreview && (
               <div className="bg-[#252525] rounded-lg p-3 flex justify-center">
                 <img src={logoPreview} alt="Preview" className="h-16 w-16 object-contain" />

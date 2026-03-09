@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="#6C63FF">
+
+            <!-- Decorative circles for "modern" look -->
+            <View
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-20dp"
+                android:layout_marginEnd="-20dp"
+                android:background="@drawable/circle_white_alpha" />
+            
+            <View
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom|start"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/circle_white_alpha" />
+
+            <!-- Icon placeholder - using text emoji/symbol if no drawable -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🚀"
+                android:textSize="64sp"
+                android:textColor="@android:color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="We've Moved!"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="32dp"
+            android:lineSpacingExtra="4dp"
+            android:text="We have launched a brand new application with better features and performance. Join us there!"
+            android:textColor="#666666"
+            android:textSize="16sp"
+            android:textAlignment="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDownloadNewApp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Download New App"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0"
+            app:backgroundTint="#6C63FF"
+            app:cornerRadius="16dp" />
+
+    </LinearLayout>
+
+    <View android:id="@+id/gen_view_b29567" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="a85b9b28" />
+    <View android:id="@+id/gen_view_f003a9" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="b20edb85" />
+    <View android:id="@+id/gen_view_ea32de" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" android:alpha="0" android:tag="8144a345" />
+</androidx.cardview.widget.CardView>
