@@ -61,6 +61,16 @@ export default function AppDetailPage() {
   const [oneSignalForm, setOneSignalForm] = useState({ onesignalAppId: "", onesignalApiKey: "" });
   const [savingOneSignal, setSavingOneSignal] = useState(false);
 
+  // Management edit
+  const [editingMgmt, setEditingMgmt] = useState(false);
+  const [mgmtForm, setMgmtForm] = useState({
+    serverIp: "",
+    serverPassword: "",
+    googleAccount: "",
+    googlePassword: "",
+  });
+  const [savingMgmt, setSavingMgmt] = useState(false);
+
   // Push form & history
   const [pushHistory, setPushHistory] = useState<any[]>([]);
   const [pushForm, setPushForm] = useState({
@@ -90,6 +100,12 @@ export default function AppDetailPage() {
         setOneSignalForm({
           onesignalAppId: a.onesignalAppId || "",
           onesignalApiKey: a.onesignalApiKey || "",
+        });
+        setMgmtForm({
+          serverIp: a.serverIp || "",
+          serverPassword: a.serverPassword || "",
+          googleAccount: a.googleAccount || "",
+          googlePassword: a.googlePassword || ""
         });
         if (a.onesignalAppId && a.onesignalApiKey) {
           api.getPushHistory(id).then(setPushHistory).catch(() => setPushHistory([]));
@@ -224,6 +240,19 @@ export default function AppDetailPage() {
     }
   };
 
+  const handleSaveMgmt = async () => {
+    setSavingMgmt(true);
+    try {
+      await api.updateApp(id, mgmtForm);
+      setEditingMgmt(false);
+      load();
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setSavingMgmt(false);
+    }
+  };
+
   if (loading) return <p className="text-gray-400">Yükleniyor...</p>;
   if (!app) return <p className="text-red-400">Uygulama bulunamadı.</p>;
 
@@ -244,6 +273,31 @@ export default function AppDetailPage() {
         <h2 className="text-2xl font-bold text-white">{app.displayName}</h2>
       </div>
 
+      {app.storeStatus === 'removed' && (
+        <div className="bg-red-600/20 border border-red-600 rounded-lg p-4 mb-4 flex items-center gap-4">
+          <span className="text-3xl">🚫</span>
+          <div>
+            <h3 className="text-red-300 font-bold">Marketten Kaldırıldı</h3>
+            <p className="text-red-400/80 text-sm">
+              Bu uygulama Google Play Store'da bulunamadı. Politika ihlali veya manuel kaldırma nedeniyle erişime kapatılmış olabilir.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {app.needsUpdate && (
+        <div className="bg-red-900/20 border border-red-800 rounded-lg p-4 mb-6 flex items-center gap-4">
+          <span className="text-3xl">⚠</span>
+          <div>
+            <h3 className="text-red-300 font-bold">Taslak Güncellendi</h3>
+            <p className="text-red-400/80 text-sm">
+              Bu uygulamanın kullandığı taslakta değişiklik yapıldı (Sürüm {app.builtTemplateVersion} &rarr; {app.latestTemplateVersion}).
+              Yeni özelliklerin ve düzeltmelerin geçerli olması için yeni bir sürüm üretmeniz önerilir.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* App Info */}
       <div className="bg-[#1e1e1e] rounded-lg p-6 mb-6">
         <div className="grid grid-cols-2 gap-4">
@@ -254,6 +308,10 @@ export default function AppDetailPage() {
           <div>
             <p className="text-sm text-gray-400">Gizlilik Politikası</p>
             <p className="text-white">{app.policyName || "-"}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Taslak</p>
+            <p className="text-white">{app.templateId?.name || "-"}</p>
           </div>
           <div>
             <p className="text-sm text-gray-400">Analytics</p>
@@ -397,6 +455,75 @@ export default function AppDetailPage() {
           </div>
         </div>
       )}
+
+      {/* Management Info Section */}
+      <div className="bg-[#1e1e1e] rounded-lg p-6 mb-6 border border-gray-800">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold text-white flex items-center gap-2">
+            <span className="text-blue-400">🛡</span> Yönetim Bilgileri
+          </h3>
+          <button
+            onClick={() => setEditingMgmt(!editingMgmt)}
+            className="text-blue-400 hover:text-blue-300 text-sm font-medium"
+          >
+            {editingMgmt ? "KAPAT" : "DÜZENLE"}
+          </button>
+        </div>
+
+        {editingMgmt ? (
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Sunucu IP</label>
+                <input value={mgmtForm.serverIp}
+                  onChange={(e) => setMgmtForm({ ...mgmtForm, serverIp: e.target.value })}
+                  placeholder="1.2.3.4" className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Sunucu Şifresi</label>
+                <input value={mgmtForm.serverPassword}
+                  onChange={(e) => setMgmtForm({ ...mgmtForm, serverPassword: e.target.value })}
+                  placeholder="Şifre" className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Google Hesabı</label>
+                <input value={mgmtForm.googleAccount}
+                  onChange={(e) => setMgmtForm({ ...mgmtForm, googleAccount: e.target.value })}
+                  placeholder="hesap@gmail.com" className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Google Şifresi</label>
+                <input value={mgmtForm.googlePassword}
+                  onChange={(e) => setMgmtForm({ ...mgmtForm, googlePassword: e.target.value })}
+                  placeholder="Şifre" className={inputCls} />
+              </div>
+            </div>
+            <button onClick={handleSaveMgmt} disabled={savingMgmt}
+              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-2 px-6 rounded text-sm font-medium">
+              {savingMgmt ? "Kaydediliyor..." : "KAYDET"}
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+            <div>
+              <p className="text-sm text-gray-400">Sunucu IP</p>
+              <p className="text-white font-mono">{app.serverIp || "-"}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">Sunucu Şifresi</p>
+              <p className="text-white font-mono">{app.serverPassword ? "••••••••" : "-"}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">Google Hesabı</p>
+              <p className="text-white">{app.googleAccount || "-"}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-400">Google Şifresi</p>
+              <p className="text-white font-mono">{app.googlePassword ? "••••••••" : "-"}</p>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Branding Section */}
       <div className="bg-[#1e1e1e] rounded-lg p-6 mb-6">

@@ -1,12 +1,20 @@
 import { Router, Request, Response } from 'express';
 import { Template } from '../models/Template';
+import { App } from '../models/App';
 
 const router = Router();
 
 router.get('/', async (_req: Request, res: Response) => {
   try {
     const templates = await Template.find().sort({ createdAt: -1 });
-    res.json(templates);
+    const enrichedTemplates = await Promise.all(templates.map(async (t) => {
+      const appCount = await App.countDocuments({ templateId: t._id });
+      return {
+        ...t.toObject(),
+        appCount
+      };
+    }));
+    res.json(enrichedTemplates);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -33,7 +41,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
   try {
-    const template = await Template.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const updateData = { ...req.body, $inc: { version: 1 } };
+    const template = await Template.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true });
     if (!template) return res.status(404).json({ error: 'Template not found' });
     res.json(template);
   } catch (err: any) {

@@ -22,6 +22,10 @@ export default function AppsPage() {
     loginBgColorStart: "#4C1D95",
     loginBgColorEnd: "#1E1B4B",
     brandPrimaryColor: "#7C3AED",
+    serverIp: "",
+    serverPassword: "",
+    googleAccount: "",
+    googlePassword: "",
   });
 
   const load = () => {
@@ -81,6 +85,7 @@ export default function AppsPage() {
         templateId: "", displayName: "", applicationId: "", policyName: "",
         onesignalAppId: "", onesignalApiKey: "", analyticsUrl: "", appLabel: "", appSubtitle: "",
         loginBgColorStart: "#4C1D95", loginBgColorEnd: "#1E1B4B", brandPrimaryColor: "#7C3AED",
+        serverIp: "", serverPassword: "", googleAccount: "", googlePassword: "",
       });
       setShowCreate(false);
       load();
@@ -167,6 +172,31 @@ export default function AppsPage() {
             </div>
           </div>
 
+          <div className="border-t border-[#333] pt-4 mt-4">
+            <h4 className="text-sm font-bold text-gray-300 mb-3">YÖNETİM BİLGİLERİ (İsteğe bağlı)</h4>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Sunucu IP</label>
+                <input placeholder="1.2.3.4" value={form.serverIp}
+                  onChange={(e) => setForm({ ...form, serverIp: e.target.value })} className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Sunucu Şifresi</label>
+                <input placeholder="Şifre" value={form.serverPassword}
+                  onChange={(e) => setForm({ ...form, serverPassword: e.target.value })} className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Google Hesabı</label>
+                <input placeholder="hesap@gmail.com" value={form.googleAccount}
+                  onChange={(e) => setForm({ ...form, googleAccount: e.target.value })} className={inputCls} />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Google Şifresi</label>
+                <input placeholder="Şifre" value={form.googlePassword}
+                  onChange={(e) => setForm({ ...form, googlePassword: e.target.value })} className={inputCls} />
+              </div>
+            </div>
+          </div>
           <div>
             <label className="block text-xs text-gray-400 mb-1">Analytics URL (isteğe bağlı)</label>
             <input placeholder="https://..." value={form.analyticsUrl}
@@ -272,6 +302,16 @@ export default function AppsPage() {
                   <p className="text-sm text-gray-400">{a.applicationId}</p>
                 </div>
                 <div className="ml-auto flex items-center gap-2">
+                  {a.storeStatus === 'removed' && (
+                    <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">
+                      ⚠ Kaldırıldı
+                    </span>
+                  )}
+                  {a.needsUpdate && (
+                    <span className="text-xs bg-red-900/50 text-red-300 border border-red-800 px-2 py-1 rounded animate-pulse">
+                      ⚠ Güncelleme Gerekli
+                    </span>
+                  )}
                   {a.hasLogo && (
                     <span className="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Logo</span>
                   )}

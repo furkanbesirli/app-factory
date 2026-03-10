@@ -35,7 +35,7 @@ export default function BuildPage() {
             <option value="">Taslak Seçin</option>
             {templates.map((t) => (
               <option key={t._id} value={t._id}>
-                {t.name}
+                {t.name} {t.appCount > 0 ? `(${t.appCount} uygulama)` : '(Henüz üretilmedi)'}
               </option>
             ))}
           </select>

@@ -18,6 +18,7 @@ export interface IBuildDoc extends Document {
   versionCode: number;
   versionName: string;
   paramsSnapshot: Record<string, unknown>;
+  templateVersion: number;
   logsPath?: string;
   outputs?: IBuildOutputs;
   errorMessage?: string;
@@ -44,6 +45,7 @@ const BuildSchema = new Schema<IBuildDoc>({
   versionCode: { type: Number, required: true },
   versionName: { type: String, required: true },
   paramsSnapshot: { type: Schema.Types.Mixed, default: {} },
+  templateVersion: { type: Number, default: 1 },
   logsPath: String,
   outputs: BuildOutputsSchema,
   errorMessage: String,

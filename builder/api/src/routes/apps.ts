@@ -2,16 +2,43 @@ import { Router, Request, Response } from 'express';
 import multer from 'multer';
 import fs from 'fs-extra';
 import { App } from '../models/App';
+import { Build } from '../models/Build';
 import { getKeystoreDir, getKeyJksPath, getKeystorePropsPath, hasKeystore } from '../utils/keystorePaths';
 import { getAppAssetsDir, getLogoPath, hasLogo } from '../utils/assetPaths';
+import { checkAppAvailability } from '../utils/playStore';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
-function enrichApp(a: any) {
+async function enrichApp(a: any) {
   const obj = typeof a.toObject === 'function' ? a.toObject() : { ...a };
   obj.keystore = hasKeystore(a.applicationId) ? { originalFileName: 'key.jks' } : undefined;
   obj.hasLogo = hasLogo(a.applicationId);
+
+  // Check if update is needed
+  const latestBuild = await Build.findOne({ appId: a._id, status: 'success' }).sort({ requestedAt: -1 });
+  if (latestBuild && a.templateId && (a.templateId as any).version) {
+    obj.needsUpdate = latestBuild.templateVersion < (a.templateId as any).version;
+    obj.latestTemplateVersion = (a.templateId as any).version;
+    obj.builtTemplateVersion = latestBuild.templateVersion;
+  } else {
+    obj.needsUpdate = false;
+  }
+
+  // Play Store Availability Check
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  if (!a.lastStoreCheck || a.lastStoreCheck < oneDayAgo || a.storeStatus === 'unknown') {
+    // Perform check asynchronously to not block the response too much
+    // but we'll wait for it here for accuracy in this simplified version
+    try {
+      const status = await checkAppAvailability(a.applicationId);
+      await App.findByIdAndUpdate(a._id, { storeStatus: status, lastStoreCheck: new Date() });
+      obj.storeStatus = status;
+    } catch (err) {
+      console.error('Store check failed:', err);
+    }
+  }
+
   return obj;
 }
 
@@ -52,8 +79,9 @@ router.post('/logo/:applicationId', upload.single('file'), async (req: Request, 
 
 router.get('/', async (_req: Request, res: Response) => {
   try {
-    const apps = await App.find().sort({ createdAt: -1 }).populate('templateId', 'name');
-    res.json(apps.map(enrichApp));
+    const apps = await App.find().sort({ createdAt: -1 }).populate('templateId', 'name version');
+    const enrichedApps = await Promise.all(apps.map(enrichApp));
+    res.json(enrichedApps);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
@@ -71,9 +99,9 @@ router.post('/', async (req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
-    const app = await App.findById(id).populate('templateId', 'name localPath');
+    const app = await App.findById(id).populate('templateId', 'name localPath version');
     if (!app) return res.status(404).json({ error: 'App not found' });
-    res.json(enrichApp(app));
+    res.json(await enrichApp(app));
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

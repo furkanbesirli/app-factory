@@ -26,6 +26,7 @@ export interface ITemplateDoc extends Document {
   patchRules: IPatchRule[];
   createdAt: Date;
   updatedAt: Date;
+  version: number;
 }
 
 const ParameterSchema = new Schema<ITemplateParameter>({
@@ -52,6 +53,7 @@ const TemplateSchema = new Schema<ITemplateDoc>({
   description: String,
   parameters: [ParameterSchema],
   patchRules: [PatchRuleSchema],
+  version: { type: Number, default: 1 },
 }, { timestamps: true });
 
 export const Template = mongoose.model<ITemplateDoc>('Template', TemplateSchema);

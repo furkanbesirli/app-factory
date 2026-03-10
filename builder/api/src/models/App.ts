@@ -22,6 +22,12 @@ export interface IAppDoc extends Document {
   loginBgColorStart?: string;
   loginBgColorEnd?: string;
   brandPrimaryColor?: string;
+  storeStatus?: 'published' | 'removed' | 'unknown';
+  lastStoreCheck?: Date;
+  serverIp?: string;
+  serverPassword?: string;
+  googleAccount?: string;
+  googlePassword?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -48,6 +54,12 @@ const AppSchema = new Schema<IAppDoc>({
   loginBgColorStart: { type: String, default: '#4C1D95' },
   loginBgColorEnd: { type: String, default: '#1E1B4B' },
   brandPrimaryColor: { type: String, default: '#7C3AED' },
+  storeStatus: { type: String, enum: ['published', 'removed', 'unknown'], default: 'unknown' },
+  lastStoreCheck: Date,
+  serverIp: { type: String, default: '' },
+  serverPassword: { type: String, default: '' },
+  googleAccount: { type: String, default: '' },
+  googlePassword: { type: String, default: '' },
 }, { timestamps: true });
 
 export const App = mongoose.model<IAppDoc>('App', AppSchema);

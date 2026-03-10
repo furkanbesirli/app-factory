@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { Build } from '../models/Build';
 import { App } from '../models/App';
+import { Template } from '../models/Template';
 import { isContainerPerBuildEnabled, spawnBuildContainer } from '../utils/buildRunner';
 
 const router = Router();
@@ -10,6 +11,9 @@ router.post('/apps/:id/builds', async (req: Request, res: Response) => {
     const app = await App.findById(req.params.id);
     if (!app) return res.status(404).json({ error: 'App not found' });
 
+    const template = await Template.findById(app.templateId);
+    if (!template) return res.status(404).json({ error: 'Template not found' });
+
     const { versionCode, versionName, appNameTR, appNameEN, appNameES, onesignalAppId, diversify } = req.body;
     if (!versionCode || !versionName) {
       return res.status(400).json({ error: 'versionCode and versionName are required' });
@@ -18,6 +22,7 @@ router.post('/apps/:id/builds', async (req: Request, res: Response) => {
     const build = await Build.create({
       appId: app._id,
       templateId: app.templateId,
+      templateVersion: template.version || 1,
       status: 'queued',
       versionCode: Number(versionCode),
       versionName,

@@ -102,6 +102,7 @@ export default function TemplatesPage() {
               <div>
                 <h3 className="text-white font-bold">{t.name}</h3>
                 <p className="text-sm text-gray-400">{t.localPath}</p>
+                <p className="text-xs text-blue-400 mt-1">{t.appCount || 0} uygulama üretildi</p>
                 {t.description && <p className="text-sm text-gray-500 mt-1">{t.description}</p>}
               </div>
               <button
