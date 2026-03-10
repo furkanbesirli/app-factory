@@ -117,11 +117,50 @@ router.put('/:id', async (req: Request, res: Response) => {
   }
 });
 
+import path from 'path';
+
+// ... existing code ...
+
 router.delete('/:id', async (req: Request, res: Response) => {
   try {
-    const app = await App.findByIdAndDelete(req.params.id);
+    const id = String(req.params.id);
+    const app = await App.findById(id);
     if (!app) return res.status(404).json({ error: 'App not found' });
-    res.json({ message: 'App deleted' });
+
+    const { applicationId } = app;
+
+    // 1. Find and delete all build records for this app
+    const builds = await Build.find({ appId: id });
+    const buildIds = builds.map(b => b._id.toString());
+
+    // 2. Physical Cleanup
+    const ROOT = path.resolve(__dirname, '../../../../');
+
+    // Assets & Keys (by applicationId)
+    const assetsDir = getAppAssetsDir(applicationId);
+    const keysDir = getKeystoreDir(applicationId);
+
+    // Artifacts (check both applicationId and appId)
+    const artifactByPkg = path.join(ROOT, 'builder/artifacts/apps', applicationId);
+    const artifactById = path.join(ROOT, 'builder/artifacts/apps', id);
+
+    // Remove directories
+    await fs.remove(assetsDir).catch(e => console.error(`Failed to remove assets for ${applicationId}:`, e.message));
+    await fs.remove(keysDir).catch(e => console.error(`Failed to remove keys for ${applicationId}:`, e.message));
+    await fs.remove(artifactByPkg).catch(e => console.error(`Failed to remove artifact pkg ${applicationId}:`, e.message));
+    await fs.remove(artifactById).catch(e => console.error(`Failed to remove artifact id ${id}:`, e.message));
+
+    // Cleanup workspaces for each build
+    for (const bId of buildIds) {
+      const workspaceDir = path.join(ROOT, 'builder/workspaces', bId);
+      await fs.remove(workspaceDir).catch(e => console.error(`Failed to remove workspace ${bId}:`, e.message));
+    }
+
+    // 3. Database Cleanup
+    await Build.deleteMany({ appId: id });
+    await App.findByIdAndDelete(id);
+
+    res.json({ message: 'App and all associated data deleted successfully' });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

@@ -9,6 +9,35 @@ export default function AppsPage() {
   const [showCreate, setShowCreate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const load = () => {
+    setLoading(true);
+    Promise.all([api.getApps(), api.getTemplates()])
+      .then(([a, t]) => {
+        setApps(a);
+        setTemplates(t);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  };
+
+  const handleDelete = async (id: string, name: string) => {
+    if (!window.confirm(`"${name}" uygulamasını ve tüm build dosyalarını TAMAMEN silmek istediğinize emin misiniz?`)) {
+      return;
+    }
+
+    setDeletingId(id);
+    try {
+      await api.deleteApp(id);
+      load();
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const [form, setForm] = useState({
     templateId: "",
     displayName: "",
@@ -28,15 +57,9 @@ export default function AppsPage() {
     googlePassword: "",
   });
 
-  const load = () => {
-    setLoading(true);
-    Promise.all([api.getApps(), api.getTemplates()])
-      .then(([a, t]) => { setApps(a); setTemplates(t); })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  };
-
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    load();
+  }, []);
 
   // Android package name: lowercase letters, digits, dots. At least 2 segments (e.g. com.app).
   const isValidPackageName = (id: string): boolean => {
@@ -321,6 +344,23 @@ export default function AppsPage() {
                     <span className="text-xs bg-orange-900 text-orange-300 px-2 py-1 rounded">Key Gerekli</span>
                   )}
                 </div>
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDelete(a._id, a.displayName);
+                  }}
+                  disabled={deletingId === a._id}
+                  className="ml-4 p-2 text-red-500 hover:bg-red-900/20 rounded transition-colors disabled:opacity-50"
+                  title="Uygulamayı Sil"
+                >
+                  {deletingId === a._id ? (
+                    <span className="animate-spin inline-block">⌛</span>
+                  ) : (
+                    "🗑"
+                  )}
+                </button>
               </div>
             </Link>
           ))}
