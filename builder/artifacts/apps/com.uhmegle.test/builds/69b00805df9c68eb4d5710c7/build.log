@@ -1,0 +1,208 @@
+[2026-03-10T12:01:15.314Z] === STEP 1: Preparing workspace ===
+[2026-03-10T12:01:15.314Z] Copying template from /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/android-v3 to /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android
+[2026-03-10T12:01:15.361Z] Template copied successfully
+[2026-03-10T12:01:15.361Z] === REPACKAGE: chatonlive.com.aab → com.uhmegle.test ===
+[2026-03-10T12:01:15.370Z]   Replaced "chatonlive.com.aab" in 15 files
+[2026-03-10T12:01:15.375Z]   Moved source: chatonlive/com/aab/ → com/uhmegle/test/
+[2026-03-10T12:01:15.376Z]   Updated namespace in build.gradle → com.uhmegle.test
+[2026-03-10T12:01:15.376Z] === REPACKAGE: Complete ===
+[2026-03-10T12:01:15.376Z] === STEP 2: Applying parameters ===
+[2026-03-10T12:01:15.376Z] Setting applicationId = com.uhmegle.test
+[2026-03-10T12:01:15.377Z] Setting versionCode = 100, versionName = 1.0.0
+[2026-03-10T12:01:15.377Z] Gradle file updated
+[2026-03-10T12:01:15.377Z] Updated AndroidManifest.xml package → com.uhmegle.test
+[2026-03-10T12:01:15.377Z] Setting app_name EN = Uhmegle
+[2026-03-10T12:01:15.378Z] Setting app_name TR = Uhmegle
+[2026-03-10T12:01:15.378Z] Setting app_name ES = Uhmegle
+[2026-03-10T12:01:15.378Z] === STEP 2b: Applying branding ===
+[2026-03-10T12:01:15.379Z] Branding applied to layout/activity_login.xml
+[2026-03-10T12:01:15.379Z] Branding applied to layout/activity_safety.xml
+[2026-03-10T12:01:15.379Z] App label set to: Uhmeglee
+[2026-03-10T12:01:15.379Z] App subtitle set to: Uhmegle
+[2026-03-10T12:01:15.381Z] Brand name replaced in 3 source file(s)
+[2026-03-10T12:01:15.381Z] brand_background_start = #fff8c7
+[2026-03-10T12:01:15.382Z] brand_background_end = #f3f3f7
+[2026-03-10T12:01:15.382Z] brand_primary = #0a557b
+[2026-03-10T12:01:15.383Z] Theme placeholder replaced: APP_THEME → Tte (Theme.Tte)
+[2026-03-10T12:01:15.383Z] === DIVERSIFICATION: Starting ===
+[2026-03-10T12:01:15.383Z] Injecting 8 random Kotlin classes
+[2026-03-10T12:01:15.386Z]   Created classes: CacheBridge_2037, DataAdapter_0b57, CacheWorker_7ff7, CacheFilter_9abe, UtilResolver_9585, TaskGuard_1f88, AuthGuard_35f8, SyncObserver_1495
+[2026-03-10T12:01:15.386Z] Injecting random resource entries
+[2026-03-10T12:01:15.387Z]   Resource entries injected
+[2026-03-10T12:01:15.387Z] Injecting dummy views into layouts
+[2026-03-10T12:01:15.389Z]   Dummy views added to 7 layouts
+[2026-03-10T12:01:15.389Z] Generating 2MB dummy assets
+[2026-03-10T12:01:15.391Z]   Created 4 dummy asset files (~2MB total) + AssetRefHolder to prevent stripping
+[2026-03-10T12:01:15.391Z] Generating random obfuscation dictionary
+[2026-03-10T12:01:15.393Z]   Obfuscation dictionaries configured
+[2026-03-10T12:01:15.393Z] Enabling R8/Proguard minification
+[2026-03-10T12:01:15.393Z]   R8 minification + resource shrinking enabled
+[2026-03-10T12:01:15.393Z] === DIVERSIFICATION: Complete ===
+[2026-03-10T12:01:15.393Z] === STEP 3: Setting up signing ===
+[2026-03-10T12:01:15.393Z] WARNING: No keystore configured. Build may produce unsigned output.
+[2026-03-10T12:01:15.394Z] === STEP 4: Running Gradle build ===
+[2026-03-10T12:01:15.394Z] Running: gradlew clean
+[2026-03-10T12:01:15.394Z] > ./gradlew clean
+> Task :app:clean UP-TO-DATE
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+1 actionable task: 1 up-to-date
+[2026-03-10T12:01:18.597Z] Running: gradlew assembleRelease
+[2026-03-10T12:01:18.598Z] > ./gradlew assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+
+> Task :app:processReleaseMainManifest
+package="com.uhmegle.test" found in source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/app/src/main/AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.uhmegle.test" from the source AndroidManifest.xml: /Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/app/src/main/AndroidManifest.xml.
+
+> Task :app:processReleaseManifest
+> Task :app:parseReleaseLocalResources
+> Task :app:buildKotlinToolingMetadata
+> Task :app:javaPreCompileRelease
+> Task :app:processReleaseManifestForPackage
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseShaders
+> Task :app:mergeReleaseArtProfile
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:mergeReleaseResources
+> Task :app:processReleaseResources
+> Task :app:bundleReleaseResources
+
+> Task :app:compileReleaseKotlin
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/app/src/main/java/com/uhmegle/test/HomeActivity.kt:119:21 'setter for databaseEnabled: Boolean' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/app/src/main/java/com/uhmegle/test/LoginActivity.kt:220:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/app/src/main/java/com/uhmegle/test/services/GoogleSignInService.kt:33:17 Variable 'account' is never used
+
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:mergeReleaseGeneratedProguardFiles
+> Task :app:processReleaseJavaRes
+> Task :app:expandReleaseArtProfileWildcards
+> Task :app:mergeReleaseJavaResource
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:minifyReleaseWithR8
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:shrinkReleaseRes
+> Task :app:convertReleaseProtoResources
+> Task :app:optimizeReleaseResources
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 49s
+47 actionable tasks: 47 executed
+[2026-03-10T12:03:08.403Z] Running: gradlew bundleRelease
+[2026-03-10T12:03:08.407Z] > ./gradlew bundleRelease
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:generateReleaseFeatureMetadata
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:checkReleaseAarMetadata UP-TO-DATE
+> Task :app:generateReleaseResValues UP-TO-DATE
+> Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseResources UP-TO-DATE
+> Task :app:packageReleaseResources UP-TO-DATE
+> Task :app:parseReleaseLocalResources UP-TO-DATE
+> Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksRelease UP-TO-DATE
+> Task :app:processReleaseMainManifest UP-TO-DATE
+> Task :app:processReleaseManifest UP-TO-DATE
+> Task :app:processReleaseManifestForPackage UP-TO-DATE
+> Task :app:processReleaseResources UP-TO-DATE
+> Task :app:compileReleaseKotlin UP-TO-DATE
+> Task :app:javaPreCompileRelease UP-TO-DATE
+> Task :app:compileReleaseJavaWithJavac NO-SOURCE
+> Task :app:mergeReleaseArtProfile UP-TO-DATE
+> Task :app:expandReleaseArtProfileWildcards UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processReleaseJavaRes UP-TO-DATE
+> Task :app:mergeReleaseJavaResource UP-TO-DATE
+> Task :app:mergeReleaseStartupProfile UP-TO-DATE
+> Task :app:minifyReleaseWithR8 UP-TO-DATE
+> Task :app:processApplicationManifestReleaseForBundle UP-TO-DATE
+> Task :app:bundleReleaseResources UP-TO-DATE
+> Task :app:extractReleaseVersionControlInfo UP-TO-DATE
+> Task :app:mergeReleaseShaders UP-TO-DATE
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:writeReleaseAppMetadata UP-TO-DATE
+> Task :app:buildReleasePreBundle
+> Task :app:compileReleaseArtProfile UP-TO-DATE
+> Task :app:collectReleaseDependencies UP-TO-DATE
+> Task :app:configureReleaseDependencies
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:packageReleaseBundle
+> Task :app:shrinkBundleReleaseResources
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+
+[Incubating] Problems report is available at: file:///Users/furkanbesirli/Projects/mobile/com-umingleapp-aab/builder/workspaces/69b00805df9c68eb4d5710c7/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 7s
+44 actionable tasks: 10 executed, 34 up-to-date
+[2026-03-10T12:03:16.491Z] === STEP 5: Collecting artifacts ===
+[2026-03-10T12:03:16.512Z] APK collected: apps/com.uhmegle.test/builds/69b00805df9c68eb4d5710c7/com.uhmegle.test(v1.0.0).apk
+[2026-03-10T12:03:16.522Z] AAB collected: apps/com.uhmegle.test/builds/69b00805df9c68eb4d5710c7/com.uhmegle.test(v1.0.0).aab
+[2026-03-10T12:03:16.542Z] Mapping collected: apps/com.uhmegle.test/builds/69b00805df9c68eb4d5710c7/mapping.txt
+[2026-03-10T12:03:16.542Z] === BUILD COMPLETE ===

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="splash_background">#FFF8F0</color>
+    <color name="splash_orange">#F5A623</color>
+    <color name="splash_white">#FFFFFF</color>
+
+    <!-- Brand Colors — warm cream / amber theme -->
+    <color name="brand_primary">#F5A623</color>
+    <color name="brand_secondary">#E8961F</color>
+    <color name="brand_background_start">#FFF8F0</color>
+    <color name="brand_background_end">#FFF1E0</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#7A7A7A</color>
+    <color name="surface_glass">#1AFFFFFF</color>
+    <color name="surface_glass_stroke">#33FFFFFF</color>
+
+    <!-- V3 Bottom Sheet / Card Colors -->
+    <color name="v2_sheet_bg">#FFFFFF</color>
+    <color name="v2_sheet_text">#1A1A1A</color>
+    <color name="v2_sheet_text_dim">#6B7280</color>
+
+    <!-- Live badge -->
+    <color name="live_green">#4CAF50</color>
+</resources>

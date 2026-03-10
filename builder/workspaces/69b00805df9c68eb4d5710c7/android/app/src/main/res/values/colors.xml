@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="splash_background">#FFF8F0</color>
+    <color name="splash_orange">#F5A623</color>
+    <color name="splash_white">#FFFFFF</color>
+
+    <!-- Brand Colors — warm cream / amber theme -->
+    <color name="brand_primary">#0a557b</color>
+    <color name="brand_secondary">#E8961F</color>
+    <color name="brand_background_start">#fff8c7</color>
+    <color name="brand_background_end">#f3f3f7</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#7A7A7A</color>
+    <color name="surface_glass">#1AFFFFFF</color>
+    <color name="surface_glass_stroke">#33FFFFFF</color>
+
+    <!-- V3 Bottom Sheet / Card Colors -->
+    <color name="v2_sheet_bg">#FFFFFF</color>
+    <color name="v2_sheet_text">#1A1A1A</color>
+    <color name="v2_sheet_text_dim">#6B7280</color>
+
+    <!-- Live badge -->
+    <color name="live_green">#4CAF50</color>
+    <color name="gen_color_109f">#5EE4B0</color>
+    <color name="gen_color_8ecf">#4C1A59</color>
+    <color name="gen_color_316a">#D8C755</color>
+    <color name="gen_color_b0ce">#5625BA</color>
+    <color name="gen_color_ea18">#78EC45</color>
+    <color name="gen_color_fd73">#D1C247</color>
+    <color name="gen_color_6f3f">#B803AF</color>
+    <color name="gen_color_9e57">#17B29B</color>
+    <color name="gen_color_8fde">#2015BE</color>
+    <color name="gen_color_39e3">#3D3E9A</color>
+</resources>

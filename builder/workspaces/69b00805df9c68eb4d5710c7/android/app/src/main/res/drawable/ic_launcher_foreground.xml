@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Adaptive icon canvas: 108dp x 108dp.
+        Safe zone (guaranteed visible): center 66dp — launcher masks can crop the outer 21dp.
+        Logo at 66dp = tam görünür, zoom/crop yok.
+    -->
+    <item
+        android:drawable="@drawable/app_logo"
+        android:gravity="center"
+        android:width="66dp"
+        android:height="66dp" />
+</layer-list>
