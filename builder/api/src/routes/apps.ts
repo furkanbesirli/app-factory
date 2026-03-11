@@ -12,6 +12,41 @@ import { generateKeystore } from '../utils/keystoreGenerator';
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
+// Public endpoint for Android apps to fetch their configuration
+router.get('/config/all', async (_req: Request, res: Response) => {
+  try {
+    const apps = await App.find();
+    const config = apps.map(app => ({
+      packageName: app.applicationId,
+      settings: {
+        googleSignInEnabled: false, // Defaulting for now
+        googleSignInCountries: [],
+        botsApiUrl: app.analyticsUrl || "https://umingle.com/data/bots.json",
+        privacyPolicyUrl: `https://yap.chat/${app.applicationId}/privacy-policy.html`,
+        termsOfServiceUrl: `https://yap.chat/${app.applicationId}/privacy-policy.html`, // Fallback
+        communityGuidelinesUrl: `https://yap.chat/${app.applicationId}/privacy-policy.html`, // Fallback
+        cookiePolicyUrl: `https://yap.chat/${app.applicationId}/privacy-policy.html`, // Fallback
+        minimumAppVersion: "1.0.0",
+        updateRequired: false,
+        playStoreUrl: `https://play.google.com/store/apps/details?id=${app.applicationId}`,
+        webviewUrl: "",
+        newApp: false,
+        newAppUrl: "",
+        botOnlyMode: false,
+        // Custom fields for Template 3
+        appSubtitle: app.appSubtitle || "",
+        showLiveUsers: app.showLiveUsers ?? true,
+        liveUsersCount: app.liveUsersCount || "85,432",
+        liveUsersText: app.liveUsersText || "users are live",
+        loginButtonAreaBgColor: app.loginButtonAreaBgColor || "#ffffff"
+      }
+    }));
+    res.json(config);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 async function enrichApp(a: any) {
   const obj = typeof a.toObject === 'function' ? a.toObject() : { ...a };
   obj.keystore = hasKeystore(a.applicationId) ? {

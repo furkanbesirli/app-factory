@@ -28,6 +28,10 @@ export interface IAppDoc extends Document {
   serverPassword?: string;
   googleAccount?: string;
   googlePassword?: string;
+  showLiveUsers?: boolean;
+  liveUsersCount?: string;
+  liveUsersText?: string;
+  loginButtonAreaBgColor?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -60,6 +64,10 @@ const AppSchema = new Schema<IAppDoc>({
   serverPassword: { type: String, default: '' },
   googleAccount: { type: String, default: '' },
   googlePassword: { type: String, default: '' },
+  showLiveUsers: { type: Boolean, default: true },
+  liveUsersCount: { type: String, default: '85,432' },
+  liveUsersText: { type: String, default: 'users are live' },
+  loginButtonAreaBgColor: { type: String, default: '#ffffff' },
 }, { timestamps: true });
 
 export const App = mongoose.model<IAppDoc>('App', AppSchema);

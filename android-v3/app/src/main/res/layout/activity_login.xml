@@ -64,6 +64,7 @@
 
             <!-- Subtitle -->
             <TextView
+                android:id="@+id/tvAppSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The classic video chat experience."
@@ -74,6 +75,7 @@
 
             <!-- Users Live Badge -->
             <LinearLayout
+                android:id="@+id/layoutLiveUsersBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -90,6 +92,7 @@
                     android:background="@drawable/circle_green_dot" />
 
                 <TextView
+                    android:id="@+id/tvLiveUsersCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="32,451 Users Live"

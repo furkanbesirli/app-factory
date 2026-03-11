@@ -54,6 +54,10 @@ export default function AppDetailPage() {
     loginBgColorStart: "#4C1D95",
     loginBgColorEnd: "#1E1B4B",
     brandPrimaryColor: "#7C3AED",
+    showLiveUsers: true,
+    liveUsersCount: "85,432",
+    liveUsersText: "users are live",
+    loginButtonAreaBgColor: "#ffffff",
   });
   const [savingBrand, setSavingBrand] = useState(false);
 
@@ -97,6 +101,10 @@ export default function AppDetailPage() {
           loginBgColorStart: a.loginBgColorStart || "#4C1D95",
           loginBgColorEnd: a.loginBgColorEnd || "#1E1B4B",
           brandPrimaryColor: a.brandPrimaryColor || "#7C3AED",
+          showLiveUsers: a.showLiveUsers ?? true,
+          liveUsersCount: a.liveUsersCount || "85,432",
+          liveUsersText: a.liveUsersText || "users are live",
+          loginButtonAreaBgColor: a.loginButtonAreaBgColor || "#ffffff",
         });
         setOneSignalForm({
           onesignalAppId: a.onesignalAppId || "",
@@ -626,6 +634,53 @@ export default function AppDetailPage() {
                 </div>
               </div>
             </div>
+
+            {app.templateId?._id === "69b007bcdf9c68eb4d5710a0" && (
+              <>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs text-gray-400 mb-1">Buton Alanı Arkaplanı</label>
+                    <div className="flex items-center gap-2">
+                      <input type="color" value={brandForm.loginButtonAreaBgColor}
+                        onChange={(e) => setBrandForm({ ...brandForm, loginButtonAreaBgColor: e.target.value })}
+                        className="w-8 h-8 rounded cursor-pointer border border-[#333] bg-transparent" />
+                      <input value={brandForm.loginButtonAreaBgColor}
+                        onChange={(e) => setBrandForm({ ...brandForm, loginButtonAreaBgColor: e.target.value })}
+                        className="flex-1 bg-[#252525] border border-[#333] rounded px-2 py-1.5 text-white text-xs font-mono focus:outline-none focus:border-blue-500" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[#333]">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-bold text-gray-300">Canlı Kullanıcı Gösterimi</h4>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked={brandForm.showLiveUsers}
+                        onChange={(e) => setBrandForm({ ...brandForm, showLiveUsers: e.target.checked })}
+                        className="sr-only peer" />
+                      <div className="w-11 h-6 bg-[#333] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                    </label>
+                  </div>
+
+                  {brandForm.showLiveUsers && (
+                    <div className="grid grid-cols-2 gap-3 animate-in fade-in slide-in-from-top-1">
+                      <div>
+                        <label className="block text-xs text-gray-400 mb-1">Kullanıcı Sayısı</label>
+                        <input value={brandForm.liveUsersCount}
+                          onChange={(e) => setBrandForm({ ...brandForm, liveUsersCount: e.target.value })}
+                          placeholder="85,432" className={inputCls} />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-400 mb-1">Metin</label>
+                        <input value={brandForm.liveUsersText}
+                          onChange={(e) => setBrandForm({ ...brandForm, liveUsersText: e.target.value })}
+                          placeholder="users are live" className={inputCls} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
 
             <button onClick={handleSaveBrand} disabled={savingBrand}
               className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-2 px-6 rounded text-sm font-medium">

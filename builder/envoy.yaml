@@ -25,6 +25,12 @@ static_resources:
                             prefix_rewrite: "/"
                             timeout: 300s
                         - match:
+                            path: "/apps.json"
+                          route:
+                            cluster: api_service
+                            prefix_rewrite: "/apps/config/all"
+                            timeout: 10s
+                        - match:
                             safe_regex:
                               google_re2: {}
                               regex: "^/([^/]+)/privacy-policy\\.html$"

@@ -54,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var documentProgress: ProgressBar
     private lateinit var btnDocumentClose: View
     
+    private lateinit var tvAppSubtitle: TextView
+    private lateinit var layoutLiveUsersBadge: View
+    private lateinit var tvLiveUsersCount: TextView
+    
     private var sidebarVisible = false
     private var documentVisible = false
     
@@ -100,10 +104,12 @@ class LoginActivity : AppCompatActivity() {
         
         // Document modal views
         documentModal = findViewById(R.id.documentModal)
-        documentTitle = findViewById(R.id.documentTitle)
-        documentContent = findViewById(R.id.documentContent)
         documentProgress = findViewById(R.id.documentProgress)
         btnDocumentClose = findViewById(R.id.btnDocumentClose)
+        
+        tvAppSubtitle = findViewById(R.id.tvAppSubtitle)
+        layoutLiveUsersBadge = findViewById(R.id.layoutLiveUsersBadge)
+        tvLiveUsersCount = findViewById(R.id.tvLiveUsersCount)
         
         // Check if already signed in with a small delay to let UI settle
         lifecycleScope.launch {
@@ -143,6 +149,25 @@ class LoginActivity : AppCompatActivity() {
             
             btnGuestLogin.visibility = if (shouldHideGuest) View.GONE else View.VISIBLE
             findViewById<View?>(R.id.dividerLayout)?.visibility = if (btnGuestLogin.visibility == View.VISIBLE) View.VISIBLE else View.GONE
+            
+            // Apply Template 3 Customizations
+            if (settings.appSubtitle.isNotEmpty()) {
+                tvAppSubtitle.text = settings.appSubtitle
+            }
+            
+            layoutLiveUsersBadge.visibility = if (settings.showLiveUsers) View.VISIBLE else View.GONE
+            if (settings.showLiveUsers && settings.liveUsersCount.isNotEmpty()) {
+                tvLiveUsersCount.text = "${settings.liveUsersCount} ${settings.liveUsersText}"
+            }
+            
+            if (settings.loginButtonAreaBgColor.isNotEmpty()) {
+                try {
+                    val color = android.graphics.Color.parseColor(settings.loginButtonAreaBgColor)
+                    findViewById<androidx.cardview.widget.CardView>(R.id.bottomSheet).setCardBackgroundColor(color)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
             
             // DEBUG TOAST: Remove this when everything is confirmed working
 

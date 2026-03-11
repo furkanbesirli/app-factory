@@ -24,7 +24,12 @@ data class AdminSettings(
     val webviewUrl: String = "",
     val newApp: Boolean = false,
     val newAppUrl: String = "",
-    val botOnlyMode: Boolean = false
+    val botOnlyMode: Boolean = false,
+    val appSubtitle: String = "",
+    val showLiveUsers: Boolean = true,
+    val liveUsersCount: String = "",
+    val liveUsersText: String = "",
+    val loginButtonAreaBgColor: String = ""
 )
 
 class AdminService(private val context: Context) {
@@ -134,7 +139,12 @@ class AdminService(private val context: Context) {
             webviewUrl = json.optString("webviewUrl", ""),
             newApp = json.optBoolean("newApp", false),
             newAppUrl = json.optString("newAppUrl", ""),
-            botOnlyMode = json.optBoolean("botOnlyMode", false)
+            botOnlyMode = json.optBoolean("botOnlyMode", false),
+            appSubtitle = json.optString("appSubtitle", ""),
+            showLiveUsers = json.optBoolean("showLiveUsers", true),
+            liveUsersCount = json.optString("liveUsersCount", ""),
+            liveUsersText = json.optString("liveUsersText", ""),
+            loginButtonAreaBgColor = json.optString("loginButtonAreaBgColor", "")
         )
     }
     
