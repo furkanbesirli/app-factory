@@ -23,7 +23,8 @@ class BlogActivity : AppCompatActivity() {
         val excerpt: String,
         val fullContent: String,
         val categoryColor: Int,
-        val category: String
+        val category: String,
+        val imageResId: Int
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,43 +59,59 @@ class BlogActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            lp.bottomMargin = dpToPx(16)
+            lp.bottomMargin = dpToPx(24)
             layoutParams = lp
-            radius = dpToPx(20).toFloat()
-            cardElevation = dpToPx(4).toFloat()
+            radius = dpToPx(24).toFloat()
+            cardElevation = dpToPx(6).toFloat()
             setCardBackgroundColor(Color.WHITE)
         }
 
         val inner = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(dpToPx(20), dpToPx(20), dpToPx(20), dpToPx(20))
+        }
+
+        // Article Image
+        val image = ImageView(this).apply {
+            setImageResource(article.imageResId)
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(180)
+            )
+            layoutParams = lp
+        }
+        inner.addView(image)
+
+        val contentLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dpToPx(20), dpToPx(16), dpToPx(20), dpToPx(20))
         }
 
         // Category badge
         val badge = TextView(this).apply {
-            text = article.category
+            text = article.category.uppercase()
             setTextColor(Color.WHITE)
-            textSize = 11f
-            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            textSize = 10f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             val bg = GradientDrawable().apply {
                 setColor(article.categoryColor)
-                cornerRadius = dpToPx(12).toFloat()
+                cornerRadius = dpToPx(6).toFloat()
             }
             background = bg
-            setPadding(dpToPx(12), dpToPx(4), dpToPx(12), dpToPx(4))
+            setPadding(dpToPx(10), dpToPx(4), dpToPx(10), dpToPx(4))
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             layoutParams = lp
         }
-        inner.addView(badge)
+        contentLayout.addView(badge)
 
         // Title
         val title = TextView(this).apply {
             text = article.title
             setTextColor(Color.parseColor("#1A1A1A"))
-            textSize = 18f
+            textSize = 20f
             typeface = Typeface.create("sans-serif-bold", Typeface.BOLD)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -103,7 +120,7 @@ class BlogActivity : AppCompatActivity() {
             lp.topMargin = dpToPx(12)
             layoutParams = lp
         }
-        inner.addView(title)
+        contentLayout.addView(title)
 
         // Date
         val date = TextView(this).apply {
@@ -117,7 +134,7 @@ class BlogActivity : AppCompatActivity() {
             lp.topMargin = dpToPx(4)
             layoutParams = lp
         }
-        inner.addView(date)
+        contentLayout.addView(date)
 
         // Excerpt
         val excerpt = TextView(this).apply {
@@ -132,7 +149,7 @@ class BlogActivity : AppCompatActivity() {
             lp.topMargin = dpToPx(10)
             layoutParams = lp
         }
-        inner.addView(excerpt)
+        contentLayout.addView(excerpt)
 
         // Full content (initially hidden)
         val fullContent = TextView(this).apply {
@@ -148,36 +165,37 @@ class BlogActivity : AppCompatActivity() {
             lp.topMargin = dpToPx(10)
             layoutParams = lp
         }
-        inner.addView(fullContent)
+        contentLayout.addView(fullContent)
 
         // Read More button
         val readMore = TextView(this).apply {
-            text = "Read More →"
-            setTextColor(Color.parseColor("#F5A623"))
-            textSize = 14f
-            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            text = "READ MORE →"
+            setTextColor(Color.parseColor("#1565C0"))
+            textSize = 13f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             val lp = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            lp.topMargin = dpToPx(12)
+            lp.topMargin = dpToPx(16)
             layoutParams = lp
         }
-        inner.addView(readMore)
+        contentLayout.addView(readMore)
 
         // Toggle expand/collapse
         readMore.setOnClickListener {
             if (fullContent.visibility == View.GONE) {
                 fullContent.visibility = View.VISIBLE
                 excerpt.visibility = View.GONE
-                readMore.text = "Show Less ↑"
+                readMore.text = "SHOW LESS ↑"
             } else {
                 fullContent.visibility = View.GONE
                 excerpt.visibility = View.VISIBLE
-                readMore.text = "Read More →"
+                readMore.text = "READ MORE →"
             }
         }
 
+        inner.addView(contentLayout)
         card.addView(inner)
         return card
     }
@@ -185,96 +203,63 @@ class BlogActivity : AppCompatActivity() {
     private fun getArticles(): List<BlogArticle> {
         return listOf(
             BlogArticle(
-                title = "What Makes Umingle Different from Other Video Chat Apps?",
+                title = "Live Video Chat: The New Era of Socializing",
+                date = "March 11, 2026",
+                excerpt = "Texting is no longer enough! Why do people prefer instant, face-to-face communication? Discover the rise of live video chat.",
+                fullContent = """Traditional social media platforms no longer feel 'real' enough for people. Instead of filtered photos and waiting hours for message replies, people now prefer platforms like Umingle where they can establish instant social connections.
+                
+Live video chat allows you to communicate with someone on the other side of the world as if they were right next to you, regardless of distance. This is not just a chat, but also a great opportunity to get to know different cultures and gain new perspectives.
+
+At Umingle, we are here to manage this process in the fastest and safest way possible. With a single tap, you can open a door to a new world. Remember, the most sincere moments are always the spontaneous ones.""",
+                categoryColor = Color.parseColor("#1565C0"),
+                category = "Live",
+                imageResId = R.drawable.blog_v3_live
+            ),
+            BlogArticle(
+                title = "The Benefits of 1v1 Video Private Calls",
+                date = "March 10, 2026",
+                excerpt = "Tired of crowded group chats? What you need to know about the privacy and in-depth communication provided by one-on-one calls.",
+                fullContent = """Group chats can be fun, but real bonds are usually formed in one-on-one meetings. 1v1 video chat is a form of communication where there are no distractions and mutual interest is at its highest level.
+
+Why should you prefer 1v1?
+1. Focused Communication: You can truly listen to the other person and express yourself in the best way.
+2. Privacy and Trust: Special moments between only two people, away from crowded rooms.
+3. Deep Connections: The chance to establish a more meaningful and quality interaction in a short time.
+
+Thanks to Umingle's improved 1v1 matching algorithm, you can start a private meeting with people who best suit your interests in seconds.""",
+                categoryColor = Color.parseColor("#43A047"),
+                category = "Trend",
+                imageResId = R.drawable.blog_v3_consulting
+            ),
+            BlogArticle(
+                title = "5 Golden Rules for Safe Chatting Online",
                 date = "March 8, 2026",
-                excerpt = "In a world full of dating apps and social networks, Umingle stands out by bringing back the spontaneity of real human connection through instant video chat.",
-                fullContent = """In a world full of dating apps and social networks, Umingle stands out by bringing back the spontaneity of real human connection through instant video chat.
+                excerpt = "Protecting your safety while video chatting is crucial. Check out our safety guide prepared for you.",
+                fullContent = """While meeting new people is exciting, you should never let your guard down in the digital world. Here are some important tips from the Umingle team:
 
-Unlike traditional platforms that require profiles, bios, and endless swiping, Umingle connects you face-to-face with a real person in seconds. There are no algorithms deciding who you should talk to based on your data — it's pure, unfiltered human interaction.
+1. Don't Share Sensitive Information: Never share your address, phone number, or financial information with strangers.
+2. Trust Your Instincts: If the chat makes you uncomfortable, you can immediately press the 'Next' button or report the user.
+3. Pay Attention to Your Background: Make sure the place where you are calling from does not contain details that would reveal your location.
+4. Use the Reporting System: Our moderation team works 24/7. Don't hesitate to report those who violate community rules to us.
+5. Be Kind: Mutual respect is the cornerstone of a safe environment.
 
-Our mission is simple: make it easy for anyone, anywhere, to have a genuine conversation with a stranger. Whether you're looking to practice a new language, share ideas across cultures, or simply have a fun chat during a break, Umingle is designed for those moments.
-
-With features like anonymous browsing, one-tap matching, and 24/7 moderation, we've built a platform that prioritizes both excitement and safety. Welcome to a new era of social connection.""",
-                categoryColor = Color.parseColor("#F5A623"),
-                category = "About Us"
+At Umingle, we strive to provide the safest experience for you with our AI-supported moderation and live inspection team.""",
+                categoryColor = Color.parseColor("#E53935"),
+                category = "Safety",
+                imageResId = R.drawable.blog_v3_secure
             ),
             BlogArticle(
-                title = "How to Stay Safe While Video Chatting with Strangers",
+                title = "A Global Community: Join the Umingle Family",
                 date = "March 5, 2026",
-                excerpt = "Video chatting with strangers can be exciting, but safety should always come first. Here are our top tips for a secure experience on Umingle.",
-                fullContent = """Video chatting with strangers can be exciting, but safety should always come first. Here are our top tips for a secure experience on Umingle.
+                excerpt = "Thousands of people from all over the world meet on Umingle. Real user stories and global connections.",
+                fullContent = """Umingle is not just an app, it's a giant community that removes borders. From Tokyo to Sao Paulo, from London to Istanbul, everyone is here!
 
-1. Never share personal information — This includes your full name, address, phone number, school, or workplace. Keep things light and fun.
+A student who wants to learn a new language, a traveler curious about different cultures, or just a young person looking for a new friend... Umingle brings these different worlds together.
 
-2. Trust your instincts — If a conversation makes you uncomfortable at any point, hit the "Next" button immediately. You're always in control.
-
-3. Use the Report feature — Our moderation team works 24/7. If someone violates our community guidelines, reporting helps us keep the platform safe for everyone.
-
-4. Keep your background neutral — Before starting a video chat, make sure there's nothing visible in your background that could reveal your location or personal details.
-
-5. Be respectful — The golden rule applies here too. Treat everyone with kindness and you'll have a much better experience.
-
-At Umingle, your safety is our top priority. We use advanced moderation tools and a dedicated human team to ensure every interaction meets our community standards.""",
-                categoryColor = Color.parseColor("#4CAF50"),
-                category = "Safety"
-            ),
-            BlogArticle(
-                title = "5 Reasons Why Random Video Chat Is Making a Comeback",
-                date = "March 1, 2026",
-                excerpt = "Random video chat platforms are experiencing a massive resurgence. Here's why millions are choosing spontaneous connections over curated social feeds.",
-                fullContent = """Random video chat platforms are experiencing a massive resurgence. Here's why millions are choosing spontaneous connections over curated social feeds.
-
-1. Authenticity over perfection — People are tired of filtered photos and rehearsed bios. Video chat shows the real you, and that's refreshing.
-
-2. Instant gratification — No waiting for matches, no endless messaging before meeting. On Umingle, you're in a live conversation within seconds.
-
-3. Breaking social bubbles — Social media algorithms keep showing us the same type of content and people. Random video chat introduces you to perspectives and cultures you'd never encounter otherwise.
-
-4. Combat loneliness — Studies show that face-to-face interaction, even virtual, significantly reduces feelings of isolation. A five-minute conversation with a stranger can genuinely brighten your day.
-
-5. It's just fun — There's an undeniable thrill in not knowing who you'll meet next. Every click is a new adventure, a new story, a new possibility.
-
-The future of social connection isn't about more followers — it's about more genuine moments. And that's exactly what Umingle delivers.""",
-                categoryColor = Color.parseColor("#2196F3"),
-                category = "Trends"
-            ),
-            BlogArticle(
-                title = "Building a Global Community: Stories from Umingle Users",
-                date = "February 25, 2026",
-                excerpt = "From Tokyo to São Paulo, Umingle connects people across continents. Here are some heartwarming stories from our global community.",
-                fullContent = """From Tokyo to São Paulo, Umingle connects people across continents. Here are some heartwarming stories from our global community.
-
-"I started using Umingle to practice my English. I'm from South Korea, and within a week I had conversations with people from Canada, Australia, and the UK. My confidence has skyrocketed!" — Ji-yeon, Seoul
-
-"I was going through a tough time and honestly just needed someone to talk to. The randomness of Umingle means there's no pressure — I had a 30-minute conversation with a stranger from Brazil who made me laugh harder than I had in months." — Marcus, London
-
-"As a remote worker, I sometimes go days without talking to anyone face-to-face. Umingle gives me that human interaction I was missing. It's become part of my daily routine." — Priya, Mumbai
-
-These stories remind us why we built Umingle in the first place. Technology should bring us closer, not further apart. Every connection on our platform is a small victory against the isolation that modern life can sometimes create.
-
-Thank you to our incredible community for making Umingle what it is today.""",
-                categoryColor = Color.parseColor("#9C27B0"),
-                category = "Community"
-            ),
-            BlogArticle(
-                title = "What's Next for Umingle: Our 2026 Roadmap",
-                date = "February 20, 2026",
-                excerpt = "We have big plans for Umingle this year. From new features to expanded moderation, here's a sneak peek at what's coming next.",
-                fullContent = """We have big plans for Umingle this year. From new features to expanded moderation, here's a sneak peek at what's coming next.
-
-Enhanced Matching — We're working on optional interest-based matching. You'll still be able to go fully random, but if you want to connect with someone who shares your love of music production or cooking, that option will be there.
-
-Text Chat Mode — Sometimes you're in a place where video isn't possible. We're adding a text-only mode so you can chat anytime, anywhere.
-
-Improved Safety Features — Our AI moderation system is getting a major upgrade. We're implementing real-time content detection that can identify and act on policy violations faster than ever.
-
-Localization — Umingle will soon be available in 12+ languages, making the app more accessible to users worldwide.
-
-Creator Partnerships — We're exploring partnerships with content creators who share our mission of genuine human connection.
-
-Stay tuned for updates, and as always, thank you for being part of the Umingle community. The best is yet to come!""",
-                categoryColor = Color.parseColor("#FF5722"),
-                category = "Updates"
+The stories shared by our users excite us more every day. We continue to work for a future where technology connects us more to each other. Are you ready to be part of this community?""",
+                categoryColor = Color.parseColor("#8E24AA"),
+                category = "Community",
+                imageResId = R.drawable.blog_v3_community
             )
         )
     }
