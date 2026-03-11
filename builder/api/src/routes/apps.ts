@@ -6,6 +6,7 @@ import { Build } from '../models/Build';
 import { getKeystoreDir, getKeyJksPath, getKeystorePropsPath, hasKeystore } from '../utils/keystorePaths';
 import { getAppAssetsDir, getLogoPath, hasLogo } from '../utils/assetPaths';
 import { checkAppAvailability } from '../utils/playStore';
+import { generatePolicies } from '../utils/policyGenerator';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
@@ -90,6 +91,8 @@ router.get('/', async (_req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
   try {
     const app = await App.create(req.body);
+    // Generate policies on creation
+    await generatePolicies(app.applicationId, app.policyName).catch(e => console.error('Policy generation failed:', e));
     res.status(201).json(app);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
@@ -111,6 +114,10 @@ router.put('/:id', async (req: Request, res: Response) => {
   try {
     const app = await App.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     if (!app) return res.status(404).json({ error: 'App not found' });
+
+    // Regenerate policies on update
+    await generatePolicies(app.applicationId, app.policyName).catch(e => console.error('Policy generation failed:', e));
+
     res.json(app);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
@@ -231,6 +238,34 @@ router.get('/:id/logo', async (req: Request, res: Response) => {
     }
 
     res.sendFile(logoPath);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Serving Privacy Policy and Child Safety Standards by applicationId
+router.get('/policies/:applicationId/:type', async (req: Request, res: Response) => {
+  try {
+    const applicationId = String(req.params.applicationId);
+    const type = String(req.params.type);
+    const fileName = type === 'privacy' ? 'privacy-policy.html' : type === 'child' ? 'child-safety.html' : null;
+
+    if (!fileName) return res.status(400).json({ error: 'Invalid policy type' });
+
+    const filePath = path.join(getAppAssetsDir(applicationId), fileName);
+    if (!fs.existsSync(filePath)) {
+      // Try to generate it if it doesn't exist (fail-safe)
+      const app = await App.findOne({ applicationId });
+      if (app) {
+        await generatePolicies(applicationId, app.policyName);
+        if (fs.existsSync(filePath)) {
+          return res.sendFile(filePath);
+        }
+      }
+      return res.status(404).json({ error: 'Policy file not found' });
+    }
+
+    res.sendFile(filePath);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
