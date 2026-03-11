@@ -99,6 +99,34 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
+// Serving Privacy Policy and Child Safety Standards by applicationId
+router.get('/policies/:applicationId/:type', async (req: Request, res: Response) => {
+  try {
+    const applicationId = String(req.params.applicationId);
+    const type = String(req.params.type);
+    const fileName = type === 'privacy' ? 'privacy-policy.html' : type === 'child' ? 'child-safety.html' : null;
+
+    if (!fileName) return res.status(400).json({ error: 'Invalid policy type' });
+
+    const filePath = path.join(getAppAssetsDir(applicationId), fileName);
+    if (!fs.existsSync(filePath)) {
+      // Try to generate it if it doesn't exist (fail-safe)
+      const app = await App.findOne({ applicationId });
+      if (app) {
+        await generatePolicies(applicationId, app.policyName);
+        if (fs.existsSync(filePath)) {
+          return res.sendFile(filePath);
+        }
+      }
+      return res.status(404).json({ error: 'Policy file not found' });
+    }
+
+    res.sendFile(filePath);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -243,32 +271,6 @@ router.get('/:id/logo', async (req: Request, res: Response) => {
   }
 });
 
-// Serving Privacy Policy and Child Safety Standards by applicationId
-router.get('/policies/:applicationId/:type', async (req: Request, res: Response) => {
-  try {
-    const applicationId = String(req.params.applicationId);
-    const type = String(req.params.type);
-    const fileName = type === 'privacy' ? 'privacy-policy.html' : type === 'child' ? 'child-safety.html' : null;
-
-    if (!fileName) return res.status(400).json({ error: 'Invalid policy type' });
-
-    const filePath = path.join(getAppAssetsDir(applicationId), fileName);
-    if (!fs.existsSync(filePath)) {
-      // Try to generate it if it doesn't exist (fail-safe)
-      const app = await App.findOne({ applicationId });
-      if (app) {
-        await generatePolicies(applicationId, app.policyName);
-        if (fs.existsSync(filePath)) {
-          return res.sendFile(filePath);
-        }
-      }
-      return res.status(404).json({ error: 'Policy file not found' });
-    }
-
-    res.sendFile(filePath);
-  } catch (err: any) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// Delete the duplicate route at the end of the file
 
 export default router;

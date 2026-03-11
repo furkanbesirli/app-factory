@@ -30,7 +30,11 @@ static_resources:
                               regex: "^/([^/]+)/privacy-policy\\.html$"
                           route:
                             cluster: api_service
-                            prefix_rewrite: "/apps/policies/"
+                            regex_rewrite:
+                              pattern:
+                                google_re2: {}
+                                regex: "^/([^/]+)/privacy-policy\\.html$"
+                              substitution: "/apps/policies/\\1/privacy"
                             timeout: 10s
                         - match:
                             safe_regex:
@@ -38,7 +42,11 @@ static_resources:
                               regex: "^/([^/]+)/child-safety\\.html$"
                           route:
                             cluster: api_service
-                            prefix_rewrite: "/apps/policies/"
+                            regex_rewrite:
+                              pattern:
+                                google_re2: {}
+                                regex: "^/([^/]+)/child-safety\\.html$"
+                              substitution: "/apps/policies/\\1/child"
                             timeout: 10s
                         - match:
                             prefix: "/"
