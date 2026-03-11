@@ -275,52 +275,59 @@ export default function AppsPage() {
               </div>
             </div>
 
-            {form.templateId === "69b007bcdf9c68eb4d5710a0" && (
-              <div className="border-t border-[#333] pt-4 mt-4">
-                <h4 className="text-sm font-bold text-gray-300 mb-3">TEMPLATE 3 ÖZELLEŞTİRMELERİ</h4>
+            {(() => {
+              const selectedT = templates.find(t => t._id === form.templateId);
+              const isT3 = selectedT?.localPath === './android-v3' ||
+                selectedT?.name?.toLowerCase().trim().includes('uhmegle');
+              if (!isT3) return null;
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-xs text-gray-400 mb-1">Buton Alanı Arkaplanı</label>
-                    <div className="flex items-center gap-2">
-                      <input type="color" value={form.loginButtonAreaBgColor}
-                        onChange={(e) => setForm({ ...form, loginButtonAreaBgColor: e.target.value })}
-                        className="w-10 h-10 rounded cursor-pointer border border-[#333] bg-transparent" />
-                      <input value={form.loginButtonAreaBgColor}
-                        onChange={(e) => setForm({ ...form, loginButtonAreaBgColor: e.target.value })}
-                        className="flex-1 bg-[#252525] border border-[#333] rounded px-3 py-2 text-white text-sm font-mono focus:outline-none focus:border-blue-500" />
+              return (
+                <div className="border-t border-[#333] pt-4 mt-4">
+                  <h4 className="text-sm font-bold text-gray-300 mb-3">TEMPLATE 3 ÖZELLEŞTİRMELERİ</h4>
+
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label className="block text-xs text-gray-400 mb-1">Buton Alanı Arkaplanı</label>
+                      <div className="flex items-center gap-2">
+                        <input type="color" value={form.loginButtonAreaBgColor}
+                          onChange={(e) => setForm({ ...form, loginButtonAreaBgColor: e.target.value })}
+                          className="w-10 h-10 rounded cursor-pointer border border-[#333] bg-transparent" />
+                        <input value={form.loginButtonAreaBgColor}
+                          onChange={(e) => setForm({ ...form, loginButtonAreaBgColor: e.target.value })}
+                          className="flex-1 bg-[#252525] border border-[#333] rounded px-3 py-2 text-white text-sm font-mono focus:outline-none focus:border-blue-500" />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-sm font-bold text-gray-300">Canlı Kullanıcı Gösterimi</h4>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked={form.showLiveUsers}
-                      onChange={(e) => setForm({ ...form, showLiveUsers: e.target.checked })}
-                      className="sr-only peer" />
-                    <div className="w-11 h-6 bg-[#333] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
-                  </label>
-                </div>
-
-                {form.showLiveUsers && (
-                  <div className="grid grid-cols-2 gap-4 mb-4 animate-in fade-in slide-in-from-top-1">
-                    <div>
-                      <label className="block text-xs text-gray-400 mb-1">Kullanıcı Sayısı</label>
-                      <input value={form.liveUsersCount}
-                        onChange={(e) => setForm({ ...form, liveUsersCount: e.target.value })}
-                        placeholder="85,432" className={inputCls} />
-                    </div>
-                    <div>
-                      <label className="block text-xs text-gray-400 mb-1">Metin</label>
-                      <input value={form.liveUsersText}
-                        onChange={(e) => setForm({ ...form, liveUsersText: e.target.value })}
-                        placeholder="users are live" className={inputCls} />
-                    </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-bold text-gray-300">Canlı Kullanıcı Gösterimi</h4>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked={form.showLiveUsers}
+                        onChange={(e) => setForm({ ...form, showLiveUsers: e.target.checked })}
+                        className="sr-only peer" />
+                      <div className="w-11 h-6 bg-[#333] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                    </label>
                   </div>
-                )}
-              </div>
-            )}
+
+                  {form.showLiveUsers && (
+                    <div className="grid grid-cols-2 gap-4 mb-4 animate-in fade-in slide-in-from-top-1">
+                      <div>
+                        <label className="block text-xs text-gray-400 mb-1">Kullanıcı Sayısı</label>
+                        <input value={form.liveUsersCount}
+                          onChange={(e) => setForm({ ...form, liveUsersCount: e.target.value })}
+                          placeholder="85,432" className={inputCls} />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-400 mb-1">Metin</label>
+                        <input value={form.liveUsersText}
+                          onChange={(e) => setForm({ ...form, liveUsersText: e.target.value })}
+                          placeholder="users are live" className={inputCls} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Preview */}
             <div className="mt-4 rounded-lg overflow-hidden" style={{
@@ -334,14 +341,22 @@ export default function AppsPage() {
               <div className="flex justify-center mt-3">
                 <div className="h-1 w-12 rounded" style={{ backgroundColor: form.brandPrimaryColor }} />
               </div>
-              {form.templateId === "69b007bcdf9c68eb4d5710a0" && (
-                <div className="mt-4 p-4 rounded-lg shadow-inner" style={{ backgroundColor: form.loginButtonAreaBgColor }}>
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <p className="text-black text-xs font-bold">{form.showLiveUsers ? `${form.liveUsersCount} ${form.liveUsersText}` : "Live Users Hidden"}</p>
-                  </div>
-                </div>
-              )}
+              {(() => {
+                const selectedT = templates.find(t => t._id === form.templateId);
+                const isT3 = selectedT?.localPath === './android-v3' ||
+                  selectedT?.name?.toLowerCase().trim().includes('uhmegle');
+                if (isT3) {
+                  return (
+                    <div className="mt-4 p-4 rounded-lg shadow-inner" style={{ backgroundColor: form.loginButtonAreaBgColor }}>
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <p className="text-black text-xs font-bold">{form.showLiveUsers ? `${form.liveUsersCount} ${form.liveUsersText}` : "Live Users Hidden"}</p>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })()}
             </div>
           </div>
 

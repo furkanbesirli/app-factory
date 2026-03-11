@@ -635,7 +635,7 @@ export default function AppDetailPage() {
               </div>
             </div>
 
-            {app.templateId?._id === "69b007bcdf9c68eb4d5710a0" && (
+            {(app.templateId?.localPath === './android-v3' || (app.templateId as any)?.name?.toLowerCase().includes('uhmegle')) && (
               <>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
