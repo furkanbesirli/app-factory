@@ -33,6 +33,8 @@ export const api = {
   // Keystore
   uploadKeystore: (appId: string, formData: FormData) =>
     request<any>(`/apps/${appId}/keystore`, { method: 'POST', body: formData }),
+  generateKeystore: (appId: string) =>
+    request<any>(`/apps/${appId}/keystore/generate`, { method: 'POST' }),
 
   // Logo - by package name (applicationId)
   uploadLogo: (applicationId: string, formData: FormData) =>

@@ -16,6 +16,8 @@ RUN npm run build
 # --- Production ---
 FROM node:20-alpine
 
+RUN apk add --no-cache openjdk17-jre-headless
+
 WORKDIR /app/api
 
 COPY --from=builder /app/api/dist ./dist

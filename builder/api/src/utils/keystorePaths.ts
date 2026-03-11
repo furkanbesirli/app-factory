@@ -22,3 +22,28 @@ export function hasKeystore(applicationId: string): boolean {
   const propsPath = getKeystorePropsPath(applicationId);
   return fs.existsSync(jksPath) && fs.existsSync(propsPath);
 }
+
+export function getKeystoreCredentials(applicationId: string) {
+  const propsPath = getKeystorePropsPath(applicationId);
+  if (!fs.existsSync(propsPath)) return null;
+
+  try {
+    const content = fs.readFileSync(propsPath, 'utf8');
+    const lines = content.split('\n');
+    const creds: any = {};
+    lines.forEach(line => {
+      const [key, value] = line.split('=');
+      if (key && value) {
+        creds[key.trim()] = value.trim();
+      }
+    });
+    return {
+      storePassword: creds.storePassword,
+      keyAlias: creds.keyAlias,
+      keyPassword: creds.keyPassword
+    };
+  } catch (err) {
+    console.error('Failed to read keystore properties:', err);
+    return null;
+  }
+}

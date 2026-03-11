@@ -39,6 +39,7 @@ export default function AppDetailPage() {
   const [keyAlias, setKeyAlias] = useState("");
   const [keyPassword, setKeyPassword] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [generatingKey, setGeneratingKey] = useState(false);
 
   // Logo form
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -150,6 +151,19 @@ export default function AppDetailPage() {
       alert(err.message);
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleGenerateKeystore = async () => {
+    if (!confirm("Otomatik keystore (furkankey) üretilsin mi?")) return;
+    setGeneratingKey(true);
+    try {
+      await api.generateKeystore(id);
+      load();
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setGeneratingKey(false);
     }
   };
 
@@ -648,32 +662,98 @@ export default function AppDetailPage() {
         </div>
 
         {/* Keystore Section */}
-        <div className="bg-[#1e1e1e] rounded-lg p-6">
+        <div className="bg-[#1e1e1e] rounded-lg p-6 mb-6">
           <h3 className="text-lg font-bold text-white mb-4">Keystore</h3>
           {app.keystore?.originalFileName ? (
-            <div className="bg-green-900/20 border border-green-800 rounded p-3 mb-4">
-              <p className="text-green-300 text-sm">Yüklü: {app.keystore.originalFileName}</p>
+            <div className="space-y-4">
+              <div className="bg-green-900/20 border border-green-800 rounded p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-green-300 font-medium">Yüklü: {app.keystore.originalFileName}</p>
+                  <a
+                    href={`/api/apps/${id}/keystore/download`}
+                    className="bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-1.5 rounded flex items-center gap-1 transition-colors"
+                  >
+                    📥 İNDİR (.jks)
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Store Password</p>
+                    <p className="text-white font-mono text-sm bg-[#252525] px-2 py-1 rounded border border-[#333]">
+                      {app.keystore.storePassword || "-"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Key Alias</p>
+                    <p className="text-white font-mono text-sm bg-[#252525] px-2 py-1 rounded border border-[#333]">
+                      {app.keystore.keyAlias || "-"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Key Password</p>
+                    <p className="text-white font-mono text-sm bg-[#252525] px-2 py-1 rounded border border-[#333]">
+                      {app.keystore.keyPassword || "-"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#333]">
+                <p className="text-sm text-gray-400 mb-3">Yeni bir keystore dosyası ile değiştir:</p>
+                <div className="space-y-3">
+                  <input type="file" accept=".jks,.keystore,application/x-java-keystore,application/octet-stream"
+                    onChange={(e) => setKeystoreFile(e.target.files?.[0] || null)}
+                    className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer" />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <input placeholder="Store Password" type="password" value={storePassword}
+                      onChange={(e) => setStorePassword(e.target.value)} className={inputCls} />
+                    <input placeholder="Key Alias" value={keyAlias}
+                      onChange={(e) => setKeyAlias(e.target.value)} className={inputCls} />
+                    <input placeholder="Key Password" type="password" value={keyPassword}
+                      onChange={(e) => setKeyPassword(e.target.value)} className={inputCls} />
+                  </div>
+                  <button onClick={handleUploadKeystore} disabled={uploading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-2 rounded text-sm font-medium">
+                    {uploading ? "Yükleniyor..." : "YENİ KEY İLE DEĞİŞTİR"}
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="bg-orange-900/20 border border-orange-800 rounded p-3 mb-4">
-              <p className="text-orange-300 text-sm">Henüz keystore yüklenmedi</p>
+            <div className="space-y-4">
+              <div className="bg-orange-900/20 border border-orange-800 rounded p-4">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-orange-300 text-sm font-medium">Henüz keystore yüklenmedi</p>
+                  <button
+                    onClick={handleGenerateKeystore}
+                    disabled={generatingKey}
+                    className="bg-orange-700 hover:bg-orange-600 text-white text-xs px-3 py-1.5 rounded flex items-center gap-1 transition-colors"
+                  >
+                    {generatingKey ? "Üretiliyor..." : "⚡ KEY ÜRET"}
+                  </button>
+                </div>
+                <p className="text-orange-400/60 text-xs">Build alabilmek için bir keystore dosyası (.jks) yüklemeli veya otomatik üretmelisiniz.</p>
+              </div>
+              <div className="space-y-3">
+                <input type="file" accept=".jks,.keystore,application/x-java-keystore,application/octet-stream"
+                  onChange={(e) => setKeystoreFile(e.target.files?.[0] || null)}
+                  className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <input placeholder="Store Password" type="password" value={storePassword}
+                    onChange={(e) => setStorePassword(e.target.value)} className={inputCls} />
+                  <input placeholder="Key Alias" value={keyAlias}
+                    onChange={(e) => setKeyAlias(e.target.value)} className={inputCls} />
+                  <input placeholder="Key Password" type="password" value={keyPassword}
+                    onChange={(e) => setKeyPassword(e.target.value)} className={inputCls} />
+                </div>
+                <button onClick={handleUploadKeystore} disabled={uploading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-2 rounded text-sm font-medium">
+                  {uploading ? "Yükleniyor..." : "KEY YÜKLE"}
+                </button>
+              </div>
             </div>
           )}
-          <div className="space-y-3">
-            <input type="file" accept=".jks,.keystore,application/x-java-keystore,application/octet-stream"
-              onChange={(e) => setKeystoreFile(e.target.files?.[0] || null)}
-              className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer" />
-            <input placeholder="Store Password" type="password" value={storePassword}
-              onChange={(e) => setStorePassword(e.target.value)} className={inputCls} />
-            <input placeholder="Key Alias" value={keyAlias}
-              onChange={(e) => setKeyAlias(e.target.value)} className={inputCls} />
-            <input placeholder="Key Password" type="password" value={keyPassword}
-              onChange={(e) => setKeyPassword(e.target.value)} className={inputCls} />
-            <button onClick={handleUploadKeystore} disabled={uploading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white py-2 rounded text-sm font-medium">
-              {uploading ? "Yükleniyor..." : "KEY YÜKLE"}
-            </button>
-          </div>
         </div>
 
         {/* Quick Build */}

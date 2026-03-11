@@ -3,17 +3,21 @@ import multer from 'multer';
 import fs from 'fs-extra';
 import { App } from '../models/App';
 import { Build } from '../models/Build';
-import { getKeystoreDir, getKeyJksPath, getKeystorePropsPath, hasKeystore } from '../utils/keystorePaths';
+import { getKeystoreDir, getKeyJksPath, getKeystorePropsPath, hasKeystore, getKeystoreCredentials } from '../utils/keystorePaths';
 import { getAppAssetsDir, getLogoPath, hasLogo } from '../utils/assetPaths';
 import { checkAppAvailability } from '../utils/playStore';
 import { generatePolicies } from '../utils/policyGenerator';
+import { generateKeystore } from '../utils/keystoreGenerator';
 
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
 async function enrichApp(a: any) {
   const obj = typeof a.toObject === 'function' ? a.toObject() : { ...a };
-  obj.keystore = hasKeystore(a.applicationId) ? { originalFileName: 'key.jks' } : undefined;
+  obj.keystore = hasKeystore(a.applicationId) ? {
+    originalFileName: 'key.jks',
+    ...getKeystoreCredentials(a.applicationId)
+  } : undefined;
   obj.hasLogo = hasLogo(a.applicationId);
 
   // Check if update is needed
@@ -272,5 +276,38 @@ router.get('/:id/logo', async (req: Request, res: Response) => {
 });
 
 // Delete the duplicate route at the end of the file
+
+// Serving Keystore JKS file
+router.get('/:id/keystore/download', async (req: Request, res: Response) => {
+  try {
+    const app = await App.findById(req.params.id);
+    if (!app) return res.status(404).json({ error: 'App not found' });
+
+    const jksPath = getKeyJksPath(app.applicationId);
+    if (!fs.existsSync(jksPath)) {
+      return res.status(404).json({ error: 'Keystore file not found' });
+    }
+
+    res.download(jksPath, `${app.applicationId}.jks`);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Generating Keystore automatically
+router.post('/:id/keystore/generate', async (req: Request, res: Response) => {
+  try {
+    const app = await App.findById(req.params.id);
+    if (!app) return res.status(404).json({ error: 'App not found' });
+
+    await generateKeystore(app.applicationId, app.displayName);
+
+    // Refresh app data with enriched info (including new credentials)
+    const enriched = await enrichApp(app);
+    res.json({ message: 'Keystore generated successfully', keystore: enriched.keystore });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 export default router;
