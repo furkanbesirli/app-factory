@@ -145,11 +145,11 @@ class AdminService(private val context: Context) {
             newApp = json.optBoolean("newApp", false),
             newAppUrl = json.optString("newAppUrl", ""),
             botOnlyMode = json.optBoolean("botOnlyMode", false),
-            appSubtitle = json.optString("appSubtitle", ""),
-            showLiveUsers = json.optBoolean("showLiveUsers", true),
-            liveUsersCount = json.optString("liveUsersCount", ""),
-            liveUsersText = json.optString("liveUsersText", ""),
-            loginButtonAreaBgColor = json.optString("loginButtonAreaBgColor", "")
+            appSubtitle = DEFAULT_SETTINGS.appSubtitle,
+            showLiveUsers = DEFAULT_SETTINGS.showLiveUsers,
+            liveUsersCount = DEFAULT_SETTINGS.liveUsersCount,
+            liveUsersText = DEFAULT_SETTINGS.liveUsersText,
+            loginButtonAreaBgColor = DEFAULT_SETTINGS.loginButtonAreaBgColor
         )
     }
     

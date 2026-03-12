@@ -555,13 +555,13 @@ export async function executeBuild(ctx: BuildContext): Promise<{
           // Patch appSubtitle default
           if (ctx.appSubtitle) {
             src = src.replace(
-              /appSubtitle = "[^"]*"/g,
+              /appSubtitle = ""/g,
               `appSubtitle = "${ctx.appSubtitle}"`
             );
             changed = true;
           }
 
-          // Patch showLiveUsers default
+          // showLiveUsers
           if (ctx.showLiveUsers !== undefined) {
             src = src.replace(
               /showLiveUsers = (true|false)/g,
@@ -570,28 +570,28 @@ export async function executeBuild(ctx: BuildContext): Promise<{
             changed = true;
           }
 
-          // Patch liveUsersCount default
+          // liveUsersCount
           if (ctx.liveUsersCount !== undefined) {
             src = src.replace(
-              /liveUsersCount = "[^"]*"/g,
+              /liveUsersCount = ""/g,
               `liveUsersCount = "${ctx.liveUsersCount}"`
             );
             changed = true;
           }
 
-          // Patch liveUsersText default
+          // liveUsersText
           if (ctx.liveUsersText !== undefined) {
             src = src.replace(
-              /liveUsersText = "[^"]*"/g,
+              /liveUsersText = ""/g,
               `liveUsersText = "${ctx.liveUsersText}"`
             );
             changed = true;
           }
 
-          // Patch loginButtonAreaBgColor default
+          // loginButtonAreaBgColor
           if (ctx.loginButtonAreaBgColor) {
             src = src.replace(
-              /loginButtonAreaBgColor = "[^"]*"/g,
+              /loginButtonAreaBgColor = ""/g,
               `loginButtonAreaBgColor = "${ctx.loginButtonAreaBgColor}"`
             );
             changed = true;
