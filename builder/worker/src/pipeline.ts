@@ -25,6 +25,10 @@ interface BuildContext {
   loginBgColorStart?: string;
   loginBgColorEnd?: string;
   brandPrimaryColor?: string;
+  loginButtonAreaBgColor?: string;
+  showLiveUsers?: boolean;
+  liveUsersCount?: string;
+  liveUsersText?: string;
   logoPath?: string;
   sourcePackage?: string;
   diversify?: DiversifyOptions;
@@ -533,6 +537,86 @@ export async function executeBuild(ctx: BuildContext): Promise<{
     // D4) Theme name — replace APP_THEME placeholder (clone detection)
     const themeName = resolveThemeName(ctx.appLabel, !!ctx.diversify?.enabled);
     replaceThemePlaceholder(projectPath, themeName, logStream);
+
+    // D5) Template 3: Bake custom values into AdminService.kt DEFAULT_SETTINGS
+    //     This ensures values are used even if the network endpoint changes/fails
+    const javaBase2 = path.join(projectPath, 'app', 'src', 'main', 'java');
+    if (fs.existsSync(javaBase2)) {
+      const patchAdminService = (dir: string): boolean => {
+        let found = false;
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+        for (const entry of entries) {
+          const fp = path.join(dir, entry.name);
+          if (entry.isDirectory()) { if (patchAdminService(fp)) found = true; continue; }
+          if (entry.name !== 'AdminService.kt') continue;
+          let src = fs.readFileSync(fp, 'utf-8');
+          let changed = false;
+
+          // Patch appSubtitle default
+          if (ctx.appSubtitle) {
+            src = src.replace(
+              /appSubtitle = "[^"]*"/g,
+              `appSubtitle = "${ctx.appSubtitle}"`
+            );
+            changed = true;
+          }
+
+          // Patch showLiveUsers default
+          if (ctx.showLiveUsers !== undefined) {
+            src = src.replace(
+              /showLiveUsers = (true|false)/g,
+              `showLiveUsers = ${ctx.showLiveUsers}`
+            );
+            changed = true;
+          }
+
+          // Patch liveUsersCount default
+          if (ctx.liveUsersCount !== undefined) {
+            src = src.replace(
+              /liveUsersCount = "[^"]*"/g,
+              `liveUsersCount = "${ctx.liveUsersCount}"`
+            );
+            changed = true;
+          }
+
+          // Patch liveUsersText default
+          if (ctx.liveUsersText !== undefined) {
+            src = src.replace(
+              /liveUsersText = "[^"]*"/g,
+              `liveUsersText = "${ctx.liveUsersText}"`
+            );
+            changed = true;
+          }
+
+          // Patch loginButtonAreaBgColor default
+          if (ctx.loginButtonAreaBgColor) {
+            src = src.replace(
+              /loginButtonAreaBgColor = "[^"]*"/g,
+              `loginButtonAreaBgColor = "${ctx.loginButtonAreaBgColor}"`
+            );
+            changed = true;
+          }
+
+          if (changed) {
+            fs.writeFileSync(fp, src);
+            log(logStream, `AdminService.kt DEFAULT_SETTINGS patched with build-time values`);
+            found = true;
+          }
+        }
+        return found;
+      };
+      patchAdminService(javaBase2);
+    }
+
+    // D6) Template 3: Update login_button_area_bg color resource
+    if (ctx.loginButtonAreaBgColor && fs.existsSync(colorsPath)) {
+      let colorsContent2 = fs.readFileSync(colorsPath, 'utf-8');
+      if (colorsContent2.includes('login_button_area_bg')) {
+        colorsContent2 = updateColorXml(colorsContent2, 'login_button_area_bg', ctx.loginButtonAreaBgColor);
+        fs.writeFileSync(colorsPath, colorsContent2);
+        log(logStream, `login_button_area_bg = ${ctx.loginButtonAreaBgColor}`);
+      }
+    }
 
     // E) Apply template patch rules
     if (ctx.patchRules && ctx.patchRules.length > 0) {

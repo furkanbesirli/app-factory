@@ -75,6 +75,10 @@ async function processBuild(build: any) {
     loginBgColorStart: params.loginBgColorStart as string || '#4C1D95',
     loginBgColorEnd: params.loginBgColorEnd as string || '#1E1B4B',
     brandPrimaryColor: params.brandPrimaryColor as string || '#7C3AED',
+    loginButtonAreaBgColor: params.loginButtonAreaBgColor as string || '#ffffff',
+    showLiveUsers: params.showLiveUsers !== undefined ? params.showLiveUsers as boolean : true,
+    liveUsersCount: params.liveUsersCount as string || '85,432',
+    liveUsersText: params.liveUsersText as string || 'users are live',
     logoPath: hasLogo(app.applicationId) ? getLogoPath(app.applicationId) : undefined,
     sourcePackage: 'chatonlive.com.aab',
     diversify: params.diversify as any || {

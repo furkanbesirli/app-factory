@@ -38,6 +38,10 @@ router.post('/apps/:id/builds', async (req: Request, res: Response) => {
         loginBgColorStart: app.loginBgColorStart || '#4C1D95',
         loginBgColorEnd: app.loginBgColorEnd || '#1E1B4B',
         brandPrimaryColor: app.brandPrimaryColor || '#7C3AED',
+        loginButtonAreaBgColor: (app as any).loginButtonAreaBgColor || '#ffffff',
+        showLiveUsers: (app as any).showLiveUsers ?? true,
+        liveUsersCount: (app as any).liveUsersCount || '85,432',
+        liveUsersText: (app as any).liveUsersText || 'users are live',
         diversify: diversify ?? {
           enabled: true,
           classCount: 8,

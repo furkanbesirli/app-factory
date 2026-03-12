@@ -22,4 +22,7 @@
 
     <!-- Live badge -->
     <color name="live_green">#4CAF50</color>
+
+    <!-- Template 3 Build-time configurable -->
+    <color name="login_button_area_bg">#FFFFFF</color>
 </resources>

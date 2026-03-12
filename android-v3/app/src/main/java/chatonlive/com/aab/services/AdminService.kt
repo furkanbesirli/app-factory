@@ -57,7 +57,12 @@ class AdminService(private val context: Context) {
         webviewUrl = "",
         newApp = false,
         newAppUrl = "",
-        botOnlyMode = false
+        botOnlyMode = false,
+        appSubtitle = "",
+        showLiveUsers = true,
+        liveUsersCount = "",
+        liveUsersText = "",
+        loginButtonAreaBgColor = ""
     )
     
     suspend fun loadAdminSettings(forceRefresh: Boolean = true): AdminSettings = withContext(Dispatchers.IO) {
