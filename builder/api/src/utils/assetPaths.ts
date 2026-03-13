@@ -15,3 +15,11 @@ export function getLogoPath(applicationId: string): string {
 export function hasLogo(applicationId: string): boolean {
   return fs.existsSync(getLogoPath(applicationId));
 }
+
+export function getGoogleServicesPath(applicationId: string): string {
+  return path.join(getAppAssetsDir(applicationId), 'google-services.json');
+}
+
+export function hasGoogleServices(applicationId: string): boolean {
+  return fs.existsSync(getGoogleServicesPath(applicationId));
+}

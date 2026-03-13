@@ -336,10 +336,29 @@ export default function AppDetailPage() {
             <p className="text-white">{app.templateId?.name || "-"}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-400">Analytics</p>
-            <p className="text-white">
-              {app.analyticsUrl ? <a href={app.analyticsUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">Link</a> : "-"}
-            </p>
+            <p className="text-sm text-gray-400">Firebase (google-services.json)</p>
+            <div className="flex items-center gap-2 mt-1">
+              {app.hasGoogleServices ? (
+                <span className="text-green-400 text-sm">✅ Yüklü</span>
+              ) : (
+                <span className="text-yellow-400 text-sm">⚠️ Yüklenmedi</span>
+              )}
+              <label className="cursor-pointer text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors">
+                {app.hasGoogleServices ? 'Değiştir' : 'Yükle'}
+                <input type="file" accept=".json" className="hidden" onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const fd = new FormData();
+                  fd.append('file', file);
+                  try {
+                    await api.uploadGoogleServices(app.applicationId, fd);
+                    load();
+                  } catch (err: any) {
+                    alert('google-services.json yükleme hatası: ' + err.message);
+                  }
+                }} />
+              </label>
+            </div>
           </div>
         </div>
       </div>

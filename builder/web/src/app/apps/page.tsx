@@ -60,6 +60,7 @@ export default function AppsPage() {
     liveUsersText: "users are live",
     loginButtonAreaBgColor: "#ffffff",
   });
+  const [googleServicesFile, setGoogleServicesFile] = useState<File | null>(null);
 
   useEffect(() => {
     load();
@@ -107,7 +108,14 @@ export default function AppsPage() {
     }
     setCreating(true);
     try {
-      await api.createApp(form);
+      const created = await api.createApp(form);
+
+      // Upload google-services.json if provided
+      if (googleServicesFile && created.applicationId) {
+        const fd = new FormData();
+        fd.append('file', googleServicesFile);
+        await api.uploadGoogleServices(created.applicationId, fd).catch(e => console.error('google-services upload failed:', e));
+      }
       setForm({
         templateId: "", displayName: "", applicationId: "", policyName: "",
         onesignalAppId: "", onesignalApiKey: "", analyticsUrl: "", appLabel: "", appSubtitle: "",
@@ -115,6 +123,7 @@ export default function AppsPage() {
         serverIp: "", serverPassword: "", googleAccount: "", googlePassword: "",
         showLiveUsers: true, liveUsersCount: "85,432", liveUsersText: "users are live", loginButtonAreaBgColor: "#ffffff",
       });
+      setGoogleServicesFile(null);
       setShowCreate(false);
       load();
     } catch (err: any) {
@@ -226,9 +235,15 @@ export default function AppsPage() {
             </div>
           </div>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Analytics URL (isteğe bağlı)</label>
-            <input placeholder="https://..." value={form.analyticsUrl}
-              onChange={(e) => setForm({ ...form, analyticsUrl: e.target.value })} className={inputCls} />
+            <label className="block text-xs text-gray-400 mb-1">Google Services (Firebase)</label>
+            <div className="relative">
+              <input type="file" accept=".json" onChange={(e) => setGoogleServicesFile(e.target.files?.[0] || null)}
+                className="hidden" id="gs-json-upload" />
+              <label htmlFor="gs-json-upload"
+                className={`${inputCls} cursor-pointer flex items-center gap-2 ${googleServicesFile ? 'border-green-500' : ''}`}>
+                <span className="text-gray-400">{googleServicesFile ? `✅ ${googleServicesFile.name}` : '📁 google-services.json seç...'}</span>
+              </label>
+            </div>
           </div>
 
           <div className="border-t border-[#333] pt-4 mt-4">

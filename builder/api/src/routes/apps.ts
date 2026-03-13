@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { App } from '../models/App';
 import { Build } from '../models/Build';
 import { getKeystoreDir, getKeyJksPath, getKeystorePropsPath, hasKeystore, getKeystoreCredentials } from '../utils/keystorePaths';
-import { getAppAssetsDir, getLogoPath, hasLogo } from '../utils/assetPaths';
+import { getAppAssetsDir, getLogoPath, hasLogo, getGoogleServicesPath, hasGoogleServices } from '../utils/assetPaths';
 import { checkAppAvailability } from '../utils/playStore';
 import { generatePolicies } from '../utils/policyGenerator';
 import { generateKeystore } from '../utils/keystoreGenerator';
@@ -54,6 +54,7 @@ async function enrichApp(a: any) {
     ...getKeystoreCredentials(a.applicationId)
   } : undefined;
   obj.hasLogo = hasLogo(a.applicationId);
+  obj.hasGoogleServices = hasGoogleServices(a.applicationId);
 
   // Check if update is needed
   const latestBuild = await Build.findOne({ appId: a._id, status: 'success' }).sort({ requestedAt: -1 });
@@ -112,6 +113,42 @@ router.post('/logo/:applicationId', upload.single('file'), async (req: Request, 
     await fs.writeFile(logoPath, file.buffer);
 
     res.json({ message: 'Logo saved', hasLogo: true });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Google Services JSON upload by package name
+router.post('/google-services/:applicationId', upload.single('file'), async (req: Request, res: Response) => {
+  try {
+    const applicationId = decodeURIComponent(String(req.params.applicationId));
+    const app = await App.findOne({ applicationId });
+    if (!app) return res.status(404).json({ error: 'App not found for this package' });
+
+    const file = req.file;
+    if (!file) return res.status(400).json({ error: 'No google-services.json file uploaded' });
+
+    const assetsDir = getAppAssetsDir(applicationId);
+    const gsPath = getGoogleServicesPath(applicationId);
+
+    await fs.ensureDir(assetsDir);
+    await fs.writeFile(gsPath, file.buffer);
+
+    res.json({ message: 'google-services.json saved', hasGoogleServices: true });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Google Services JSON download by package name
+router.get('/google-services/:applicationId', async (req: Request, res: Response) => {
+  try {
+    const applicationId = decodeURIComponent(String(req.params.applicationId));
+    const gsPath = getGoogleServicesPath(applicationId);
+    if (!fs.existsSync(gsPath)) {
+      return res.status(404).json({ error: 'google-services.json not found' });
+    }
+    res.sendFile(gsPath);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

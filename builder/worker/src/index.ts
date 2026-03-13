@@ -7,6 +7,7 @@ import { Build, App, Template } from './models';
 import { executeBuild } from './pipeline';
 import { hasKeystore, getKeyJksPath, readKeystoreProps } from './keystorePaths';
 import { hasLogo, getLogoPath } from './assetPaths';
+import { hasGoogleServices, getGoogleServicesPath } from './assetPaths';
 
 const POLL_INTERVAL = 10_000;
 
@@ -80,6 +81,7 @@ async function processBuild(build: any) {
     liveUsersCount: params.liveUsersCount as string || '85,432',
     liveUsersText: params.liveUsersText as string || 'users are live',
     logoPath: hasLogo(app.applicationId) ? getLogoPath(app.applicationId) : undefined,
+    googleServicesJsonPath: hasGoogleServices(app.applicationId) ? getGoogleServicesPath(app.applicationId) : undefined,
     sourcePackage: 'chatonlive.com.aab',
     diversify: params.diversify as any || {
       enabled: true,

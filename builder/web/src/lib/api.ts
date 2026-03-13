@@ -41,6 +41,11 @@ export const api = {
     request<any>(`/apps/logo/${encodeURIComponent(applicationId)}`, { method: 'POST', body: formData }),
   getLogoUrl: (applicationId: string) => `/api/apps/logo/${encodeURIComponent(applicationId)}`,
 
+  // Google Services JSON - by package name (applicationId)
+  uploadGoogleServices: (applicationId: string, formData: FormData) =>
+    request<any>(`/apps/google-services/${encodeURIComponent(applicationId)}`, { method: 'POST', body: formData }),
+  getGoogleServicesUrl: (applicationId: string) => `/api/apps/google-services/${encodeURIComponent(applicationId)}`,
+
   // Builds
   getBuilds: (appId: string) => request<any[]>(`/apps/${appId}/builds`),
   createBuild: (appId: string, data: any) =>

@@ -150,25 +150,9 @@ class LoginActivity : AppCompatActivity() {
             btnGuestLogin.visibility = if (shouldHideGuest) View.GONE else View.VISIBLE
             findViewById<View?>(R.id.dividerLayout)?.visibility = if (btnGuestLogin.visibility == View.VISIBLE) View.VISIBLE else View.GONE
             
-            // Apply Template 3 Customizations
-            if (settings.appSubtitle.isNotEmpty()) {
-                tvAppSubtitle.text = settings.appSubtitle
-            }
-            
-            layoutLiveUsersBadge.visibility = if (settings.showLiveUsers) View.VISIBLE else View.GONE
-            if (settings.showLiveUsers && settings.liveUsersCount.isNotEmpty()) {
-                tvLiveUsersCount.text = "${settings.liveUsersCount} ${settings.liveUsersText}"
-            }
-            
-            if (settings.loginButtonAreaBgColor.isNotEmpty()) {
-                try {
-                    val color = android.graphics.Color.parseColor(settings.loginButtonAreaBgColor)
-                    findViewById<androidx.cardview.widget.CardView>(R.id.bottomSheet).setCardBackgroundColor(color)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            
+            // (Removed Template 3 Customizations)
+            // UI texts and colors are now permanently injected directly into 
+            // the XML files at build time by the pipeline. No runtime overrides.
             // DEBUG TOAST: Remove this when everything is confirmed working
 
         }

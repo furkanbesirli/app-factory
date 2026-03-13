@@ -30,6 +30,7 @@ interface BuildContext {
   liveUsersCount?: string;
   liveUsersText?: string;
   logoPath?: string;
+  googleServicesJsonPath?: string;
   sourcePackage?: string;
   diversify?: DiversifyOptions;
   patchRules: Array<{
@@ -457,6 +458,15 @@ export async function executeBuild(ctx: BuildContext): Promise<{
       log(logStream, `Adaptive icon XML updated`);
     }
 
+    // D1b) google-services.json — copy into app/ directory
+    if (ctx.googleServicesJsonPath && fs.existsSync(ctx.googleServicesJsonPath)) {
+      const gsTarget = path.join(projectPath, 'app', 'google-services.json');
+      fs.copySync(ctx.googleServicesJsonPath, gsTarget, { overwrite: true });
+      log(logStream, `google-services.json copied to app/google-services.json`);
+    } else {
+      log(logStream, `No google-services.json provided — Firebase will not be active`);
+    }
+
     // D2) Label & subtitle — replace across all layout XMLs
     const layoutDir = path.join(resBase, 'layout');
     if (fs.existsSync(layoutDir)) {
@@ -477,6 +487,17 @@ export async function executeBuild(ctx: BuildContext): Promise<{
         }
         if (ctx.appSubtitle && content.includes('Connect. Chat. Spark.')) {
           content = replaceXmlText(content, 'Connect. Chat. Spark.', ctx.appSubtitle);
+          changed = true;
+        }
+
+        // Android-v3 specific text replacements
+        if (ctx.appSubtitle && content.includes('The classic video chat experience.')) {
+          content = replaceXmlText(content, 'The classic video chat experience.', ctx.appSubtitle);
+          changed = true;
+        }
+
+        if (ctx.liveUsersCount !== undefined && ctx.liveUsersText !== undefined && content.includes('32,451 Users Live')) {
+          content = replaceXmlText(content, '32,451 Users Live', `${ctx.liveUsersCount} ${ctx.liveUsersText}`);
           changed = true;
         }
 
