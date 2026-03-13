@@ -254,10 +254,25 @@ ${classNames.map(c => `        ${c}::class.java.name`).join(',\n')}
         const viewCount = rand(1, 3);
         const dummyViews = Array.from({ length: viewCount }, () => generateDummyView()).join('\n');
 
-        // Insert before closing root tag
+        // Insert before closing root tag, but handle ScrollViews carefully
+        // ScrollViews can only have ONE child. If we inject at the last </ tag,
+        // we might be adding a second child to the ScrollView itself if it's the root.
         const lastClosingTag = content.lastIndexOf('</');
         if (lastClosingTag > 0) {
-          content = content.slice(0, lastClosingTag) + '\n' + dummyViews + '\n' + content.slice(lastClosingTag);
+          const rootOpenTag = content.slice(0, content.indexOf('>')).toLowerCase();
+          const isScrollRoot = rootOpenTag.includes('scrollview');
+
+          let insertPos = lastClosingTag;
+          if (isScrollRoot) {
+            // Try to find the closing tag of the inner container (the child of the ScrollView)
+            const subContent = content.slice(0, lastClosingTag);
+            const lastNestedClosing = subContent.lastIndexOf('</');
+            if (lastNestedClosing > 0) {
+              insertPos = lastNestedClosing;
+            }
+          }
+
+          content = content.slice(0, insertPos) + '\n' + dummyViews + '\n' + content.slice(insertPos);
           fs.writeFileSync(xmlPath, content);
         }
       }
