@@ -58,10 +58,13 @@ async function enrichApp(a: any) {
 
   // Check if update is needed
   const latestBuild = await Build.findOne({ appId: a._id, status: 'success' }).sort({ requestedAt: -1 });
-  if (latestBuild && a.templateId && (a.templateId as any).version) {
-    obj.needsUpdate = latestBuild.templateVersion < (a.templateId as any).version;
-    obj.latestTemplateVersion = (a.templateId as any).version;
-    obj.builtTemplateVersion = latestBuild.templateVersion;
+  const templateVersion = (a.templateId as any)?.version || 1;
+
+  if (latestBuild) {
+    const builtTemplateVersion = latestBuild.templateVersion || 1;
+    obj.needsUpdate = builtTemplateVersion < templateVersion;
+    obj.latestTemplateVersion = templateVersion;
+    obj.builtTemplateVersion = builtTemplateVersion;
   } else {
     obj.needsUpdate = false;
   }
